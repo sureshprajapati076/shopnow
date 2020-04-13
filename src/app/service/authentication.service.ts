@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { ApplicationConstants } from '../components/constants/application-constant';
 
 export class User {
   constructor(
@@ -27,7 +28,7 @@ export class AuthenticationService {
   }
 
   authenticate(username, password) {
-    return this.httpClient.post<any>('http://localhost:8055/signin', { username, password }).pipe(
+    return this.httpClient.post<any>(ApplicationConstants.API_PATH.login, { username, password }).pipe(
       map(
         userData => {
           localStorage.setItem('username', username);
