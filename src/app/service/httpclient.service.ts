@@ -33,6 +33,7 @@ export class HttpClientService {
     return this.apiService.post(ApplicationConstants.API_PATH.signup, user);
   }
   public addProduct(product: any): Observable<any> {
+
     return this.apiService.post(ApplicationConstants.API_PATH.addproduct, product);
   }
   public addVendor(vendor: any): Observable<any> {

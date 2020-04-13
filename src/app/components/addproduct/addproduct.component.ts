@@ -25,6 +25,7 @@ export class AddproductComponent implements OnInit {
     this.newProduct = this.fb.group({
       "name": ['', Validators.required],
       "description": ['', Validators.required],
+      "imageUrl": [''],
       "expiryDate": ['', Validators.required],
       "quantity": ['', Validators.required],
       "unitPrice": ['', Validators.required],
@@ -49,6 +50,7 @@ export class AddproductComponent implements OnInit {
   }
   addProduct() {
     this.newProduct.patchValue({ vendor: { id: this.newProduct.get("vendor").value } });
+
     this.httpClientService.addProduct(this.newProduct.value)
       .subscribe(data => {
         this.newProduct.reset();
