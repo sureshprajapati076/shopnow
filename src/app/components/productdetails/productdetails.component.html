@@ -22,6 +22,9 @@
                     </div>
                     <ng-template #loaded>
                         <div class="card-body">
+                            <form>
+                                <input type="text">
+                            </form>
                             <form [formGroup]="addComment" (ngSubmit)="submitForm()">
                                 <textarea id="comment" name="comment" type="text" class="form-control" rows="3"
                                     formControlName="comment" required placeholder="write a comment..."></textarea>
@@ -37,7 +40,7 @@
                             <div class="clearfix"></div>
                             <hr>
                             <ul class="media-list">
-                                <li class="media" *ngFor="let comment of comments?.reverse(); let i = index">
+                                <li class="media" *ngFor="let comment of comments; let i = index">
                                     <a href="#" class="pull-left">
                                         <img src="https://bootdey.com/img/Content/user_1.jpg" alt=""
                                             class="rounded-circle">
@@ -72,7 +75,7 @@
                                     </div>
                                     <div>
                                         <ul class="media-list">
-                                            <li class="media" *ngFor="let reply of comment.replies?.reverse()">
+                                            <li class="media" *ngFor="let reply of comment.replies">
                                                 <a href="#" class="pull-left">
                                                     <img src="https://bootdey.com/img/Content/user_1.jpg" alt=""
                                                         class="rounded-circle">

@@ -59,6 +59,7 @@ export class ProductdetailsComponent implements OnInit {
     );
   }
   public submitReply(id, i) {
+    console.log(this.reply[i]);
 
     if (this.reply[i] !== '' && this.reply[i] != undefined) {
       this.httpClientService.addReply(this.reply[i], id).subscribe(data => {
