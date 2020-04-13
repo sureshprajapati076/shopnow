@@ -1,0 +1,74 @@
+<div style="width: 90%; margin: 0 auto;">
+    <h2>Your Cart: </h2>
+    <div *ngIf="cart">
+        <table *ngIf="totalCost != 0; else other_content" class="table">
+
+            <th>Name</th>
+            <th>Unit Price</th>
+            <th>Quantity</th>
+            <th>Sub-Total</th>
+            <tr [hidden]="visibleRowIndex[i] == true" *ngFor="let item of cart.productsInCart; let i=index">
+
+                <td>{{item.name}}</td>
+                <td>{{item.unitPrice}}</td>
+                <td>
+
+                    <button type="button" class="btn btn-success btn-circle" (click)="additems(i)">+</button>
+                    <span style="display: inline-block; width:50px;" class="text-center">{{item.quantity}}</span>
+                    <button type="button" class="btn btn-danger btn-circle" (click)="minusone(i)">-</button>
+
+
+
+
+
+                </td>
+                <td>
+                    $ {{item.unitPrice * item.quantity | number: '.2-2'}}
+
+                    <br />
+                    <span style="color:coral; cursor:pointer; "
+                        (click)="saveForLater(i,item.productId,item.unitPrice * item.quantity)">save
+                        for
+                        later</span>
+                    <!-- <span style="color:coral; cursor:pointer; " (click)="visibleRowIndex=i; saveForLater(item.productId)">save for
+              later</span> -->
+
+                </td>
+            </tr>
+            <tr>
+
+                <td></td>
+                <td></td>
+
+                <td>Total</td>
+
+
+                <td>$ {{totalCost |number : '.2-2'}}</td>
+            </tr>
+
+
+
+        </table>
+
+        <button [hidden]="totalCost == 0" class="btn btn-outline-warning" style="margin-right: 2em;"
+            style="cursor: pointer;" (click)="makepayment()">Check Out</button>
+
+    </div>
+</div>
+<ng-template #other_content>
+
+    <table class="table">
+        <tr>
+
+            <td colspan="5" style="text-align:center">
+                <h3>Oops! Cart is empty. <a [routerLink]="['/products']"> go to home page
+                        to buy</a>
+                    <br />OR<br />
+                    <a [routerLink]="['/wishlist']">Check WishList</a>
+
+                </h3>
+            </td>
+
+        </tr>
+    </table>
+</ng-template>

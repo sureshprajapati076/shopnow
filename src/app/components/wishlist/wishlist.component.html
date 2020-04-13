@@ -1,0 +1,72 @@
+<div style="width: 90%; margin: 0 auto;">
+    <h2>Your WishList: </h2>
+    <div *ngIf="cart">
+        <table class="table" *ngIf="totalCost!=0; else other_content">
+
+            <th>Name</th>
+            <th>Unit Price</th>
+            <th>Quantity</th>
+            <th>Sub-Total</th>
+            <tr [hidden]="visibleRowIndex[i] == true" *ngFor="let item of cart.saveForLater; let i=index">
+
+                <td>{{item.name}}</td>
+                <td>{{item.unitPrice}}</td>
+                <td>
+
+                    <!-- <select (change)="item.value=2">
+            <option value="1"> 1 </option>
+            <option value="2"> 2 </option>
+            <option value="3"> 3 </option>
+            <option value="4"> 4 </option>
+  
+          </select> -->
+
+                    {{item.quantity}}
+
+
+
+                </td>
+                <td>
+                    $ {{item.unitPrice * item.quantity | number: '.2-2'}}
+
+                    <br />
+                    <span style="color:coral; cursor:pointer; "
+                        (click)="putBack2Cart(i,item.productId,item.unitPrice * item.quantity)">put back 2
+                        cart</span>
+
+                </td>
+            </tr>
+            <tr>
+
+                <td></td>
+                <td></td>
+                <td>Total</td>
+                <td>$ {{totalCost |number : '.2-2'}}</td>
+            </tr>
+
+
+
+
+
+
+        </table>
+
+
+    </div>
+</div>
+<ng-template #other_content>
+    <table class="table">
+        <tr>
+
+            <td colspan="5" style="text-align:center">
+                <h3>Oops! WishList is empty. <a [routerLink]="['/products']"> go to home page
+                        to buy</a>
+                    <br />OR<br />
+                    <a [routerLink]="['/cart']">Check Cart</a>
+
+                </h3>
+            </td>
+
+        </tr>
+    </table>
+</ng-template>

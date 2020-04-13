@@ -1,0 +1,101 @@
+<div style="width: 80%;margin:0 auto;" *ngIf="product">
+    <div class="row bootstrap snippets">
+        <div class="col-md-12 col-sm-12">
+            <div class="comment-wrapper">
+                <div class="card">
+                    <div class="card-header h5">
+                        <app-productinfo [product]="product"></app-productinfo>
+                        {{product.description}}<br />
+                        {{product.vendor.name}}
+                    </div>
+                    <div *ngIf="loading else loaded" class="text-center">
+                        <div>Loading Comments...</div>
+                        <div class="spinner-grow text-muted"></div>
+                        <div class="spinner-grow text-primary"></div>
+                        <div class="spinner-grow text-success"></div>
+                        <div class="spinner-grow text-info"></div>
+                        <div class="spinner-grow text-warning"></div>
+                        <div class="spinner-grow text-danger"></div>
+                        <div class="spinner-grow text-secondary"></div>
+                        <div class="spinner-grow text-dark"></div>
+                        <div class="spinner-grow text-light"></div>
+                    </div>
+                    <ng-template #loaded>
+                        <div class="card-body">
+                            <form [formGroup]="addComment" (ngSubmit)="submitForm()">
+                                <textarea id="comment" name="comment" type="text" class="form-control" rows="3"
+                                    formControlName="comment" required placeholder="write a comment..."></textarea>
+                                <hr />
+                                <input id="stars" name="stars" type="number" class="form-control"
+                                    formControlName="stars" required="required" placeholder="Rate out of 5">
+                                <br />
+                                <button id="btnSubmit" [disabled]="!addComment.valid" type="submit"
+                                    class="btn btn-info pull-right">Comment</button>
+                                <button id="btnReset" type="reset" class="btn btn-outline-warning pull-right"
+                                    style="margin-right: 2em;">&nbsp;&nbsp;&nbsp;Reset&nbsp;&nbsp;&nbsp;</button>
+                            </form>
+                            <div class="clearfix"></div>
+                            <hr>
+                            <ul class="media-list">
+                                <li class="media" *ngFor="let comment of comments?.reverse(); let i = index">
+                                    <a href="#" class="pull-left">
+                                        <img src="https://bootdey.com/img/Content/user_1.jpg" alt=""
+                                            class="rounded-circle">
+                                    </a>
+                                    <div class="media-body">
+                                        <span class="text-muted pull-right">
+                                            <small class="text-muted">{{comment.commentDate|date:'medium'}}
+                                                ({{comment.commentDate |dateAgo}})</small>
+                                        </span>
+                                        <strong class="text-success">{{comment.emailId}} &nbsp;&nbsp;&nbsp;
+                                            <i *ngFor="let ist of comment.stars | fill" class="fa fa-star"></i>
+                                            {{comment.stars}}</strong>
+                                        <p>
+                                            {{comment.comment}}
+                                            <span [hidden]="hideme[i]" (click)="hideme[i] = !hideme[i]"
+                                                style="color: blue; cursor: pointer;">
+                                                Reply</span>
+                                            <br />
+                                            <span [hidden]="!hideme[i]">
+                                                <form (ngSubmit)="submitReply(comment.id,i)">
+                                                    <input [(ngModel)]="reply[i]" id="comment" name="comment"
+                                                        type="text" class="form-control" required>
+                                                    <button id="btnReset" type="reset" class="btn btn-outline-info"
+                                                        style="margin-right: 2em;">Reset</button>
+                                                    <span class="btn btn-outline-warning" style="margin-right: 2em;"
+                                                        (click)="hideme[i] =!hideme[i]">Cancel</span>
+                                                    <button id="btnSubmit" type="submit"
+                                                        class="btn btn-outline-primary">Reply</button>
+                                                </form>
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <ul class="media-list">
+                                            <li class="media" *ngFor="let reply of comment.replies?.reverse()">
+                                                <a href="#" class="pull-left">
+                                                    <img src="https://bootdey.com/img/Content/user_1.jpg" alt=""
+                                                        class="rounded-circle">
+                                                </a>
+                                                <div class="media-body">
+                                                    <span class="text-muted pull-right">
+                                                        <small class="text-muted">{{reply.replyDate|date:'medium'}}
+                                                            ({{reply.replyDate |dateAgo}})</small>
+                                                    </span>
+                                                    <strong class="text-success">{{reply.email}}</strong>
+                                                    <p>
+                                                        {{reply.comment}}
+                                                    </p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

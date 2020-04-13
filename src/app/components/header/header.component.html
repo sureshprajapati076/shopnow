@@ -1,0 +1,32 @@
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div><a routerLink="/" class="navbar-brand">e-shopping</a></div>
+
+        <ul class="navbar-nav" style="cursor: pointer;">
+            <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="/login" class="nav-link">Login</a></li>
+
+            <li *ngIf="loginService.isUserLoggedIn()" (click)="logOut()" class="nav-link">LogOut</li>
+            <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="/signup" class="nav-link">Sign Up</a></li>
+            <li class="nav-link"><span>Welcome </span><a style="text-decoration: none;"
+                    [routerLink]="['/user-profile']">
+                    {{loginService.getUserName()}}</a>
+            </li>
+            <li class="nav-link"><a [routerLink]="['/cart']">Cart</a></li>
+
+            <li class="nav-link"><a [routerLink]="['/wishlist']">Wish List</a></li>
+            <li class="nav-link"><a [routerLink]="['/order-history']">Order History</a></li>
+
+
+
+
+
+
+        </ul>
+
+
+
+
+
+    </nav>
+
+</header>

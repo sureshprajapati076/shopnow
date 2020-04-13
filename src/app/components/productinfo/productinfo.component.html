@@ -1,0 +1,19 @@
+<div class="row product-list">
+    <section class="panel">
+        <div class="pro-img-box">
+            <img src="http://thevectorlab.net/flatlab/img/product-list/pro3.jpg" alt="">
+            <span href="#" class="adtocart" (click)="addToCart(product.id,product.name,product.unitPrice,1)">
+                <i class="fa fa-shopping-cart"></i>
+            </span>
+        </div>
+        <div class="panel-body text-center">
+            <h4>
+                <span (click)="loadComments(product.id)" class="pro-title">
+                    {{product.name}}</span>
+                <span *ngIf="addedtocart">Added To Cart</span>
+
+            </h4>
+            <p class="price">$ {{product.unitPrice |number : '.2-2'}}</p>
+        </div>
+    </section>
+</div>

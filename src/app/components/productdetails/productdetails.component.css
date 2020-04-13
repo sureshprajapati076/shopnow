@@ -1,0 +1,24 @@
+
+
+.comment-wrapper .panel-body {
+    max-height:650px;
+    overflow:auto;
+}
+.media-list{
+    list-style-type: none;
+}
+.comment-wrapper .media-list .media img {
+    width:40px;
+    height:40px;
+    border:2px solid #e5e7e8;
+}
+
+.comment-wrapper .media-list .media {
+    border-bottom:1px dashed #efefef;
+    margin-bottom:25px;
+}
+
+.card ul>li{
+    color:chocolate;
+    display: block;
+}

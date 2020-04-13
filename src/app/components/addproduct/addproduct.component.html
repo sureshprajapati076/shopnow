@@ -1,0 +1,94 @@
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-10 mx-auto">
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <form [formGroup]="newProduct" (ngSubmit)="addProduct()">
+                        <fieldset>
+                            <legend>New Product Form</legend>
+                            <div class="container">
+
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input id="name" name="name" type="text" class="form-control" formControlName="name"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="description">Description</label>
+                                    <input id="description" name="description" type="text" class="form-control"
+                                        formControlName="description" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <label for="expiryDate">Expiry Date</label>
+                                    <input id="expiryDate" name="expiryDate" type="date" class="form-control"
+                                        formControlName="expiryDate" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <label for="quantity">Quantity In Stock</label>
+                                    <input id="quantity" name="quantity" type="number" class="form-control"
+                                        formControlName="quantity" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <label for="unitPrice">Unit Price</label>
+                                    <input id="unitPrice" name="unitPrice" type="number" class="form-control"
+                                        formControlName="unitPrice" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <!-- <label for="quantityInStock">Role</label> -->
+                                    <select id="vendor" name="vendor" class="form-control" required="required"
+                                        formControlName="vendor" [(ngModel)]="selectedVendor">
+                                        <option *ngFor="let vend of vendors; let i=index" value="{{vend.id}}">
+                                            {{vend.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div style="float:right;">
+                                    <button id="btnReset" type="reset" class="btn btn-outline-info"
+                                        style="margin-right: 2em;">Reset</button>
+                                    <a href="#" class="btn btn-outline-warning" style="margin-right: 2em;">Cancel</a>
+                                    <button id="btnSubmit" [disabled]="!newProduct.valid" type="submit"
+                                        class="btn btn-outline-primary">Add</button>
+                                </div>
+                            </div>
+
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="col-sm-6">
+                    <form [formGroup]="newVendor" (ngSubmit)="addVendor()">
+                        <fieldset>
+                            <legend>New Vendor Form</legend>
+                            <div class="container">
+
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input id="name" name="name" type="text" class="form-control" formControlName="name"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="address">Address</label>
+                                    <input id="address" name="address" type="text" class="form-control"
+                                        formControlName="address" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone</label>
+                                    <input id="phone" name="phone" type="text" class="form-control"
+                                        formControlName="phone" required="required">
+                                </div>
+
+                                <div style="float:right;">
+                                    <button id="btnReset" type="reset" class="btn btn-outline-info"
+                                        style="margin-right: 2em;">Reset</button>
+                                    <a href="#" class="btn btn-outline-warning" style="margin-right: 2em;">Cancel</a>
+                                    <button id="btnSubmit" [disabled]="!newVendor.valid" type="submit"
+                                        class="btn btn-outline-primary">Add</button>
+                                </div>
+                            </div>
+
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

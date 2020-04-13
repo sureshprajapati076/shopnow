@@ -1,0 +1,42 @@
+<h2>Your Order History: </h2>
+
+<div *ngIf="loading else loaded" class="text-center">
+
+    <div>Please check @GetMapping(value="/my-order-list") backend OrderController Thread.sleep() to remove this loading
+        time</div>
+    <div class="spinner-grow text-muted"></div>
+    <div class="spinner-grow text-primary"></div>
+    <div class="spinner-grow text-success"></div>
+    <div class="spinner-grow text-info"></div>
+    <div class="spinner-grow text-warning"></div>
+    <div class="spinner-grow text-danger"></div>
+    <div class="spinner-grow text-secondary"></div>
+    <div class="spinner-grow text-dark"></div>
+    <div class="spinner-grow text-light"></div>
+</div>
+<ng-template #loaded>
+    <div *ngIf="orderhistory">
+        <table class="table">
+            <th>#</th>
+            <th>Order Details</th>
+            <th>Total Price</th>
+            <tr *ngFor="let order of orderhistory; let i=index">
+                <td>{{i+1}}</td>
+                <td>
+
+                    <span *ngFor="let product of order.productsOrdered">
+                        <span style="width: auto; background-color: cyan; margin: 5px;">
+                            {{product.name}} $ {{product.unitPrice |number : '.2-2'}}
+                            ({{product.quantity}})
+                        </span>
+                    </span>
+
+
+
+                </td>
+
+                <td>{{order.totalCost |number : '.2-2'}}</td>
+            </tr>
+        </table>
+    </div>
+</ng-template>
