@@ -41,6 +41,10 @@ export class ProductdetailsComponent implements OnInit {
     );
     this.httpClientService.loadComments(this.productId).subscribe(data => {
       this.comments = data.body
+      this.comments.reverse();
+
+
+
       this.loading = false
     }, exception => {
     }
