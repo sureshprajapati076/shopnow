@@ -44,7 +44,7 @@
                                     </a>
                                     <div class="media-body">
                                         <span class="text-muted pull-right">
-                                            <small class="text-muted">{{comment.commentDate|date:'medium':'GMT+14'}}
+                                            <small class="text-muted">{{comment.commentDate|date:'medium'}}
                                                 ({{comment.commentDate |dateAgo}})</small>
                                         </span>
                                         <strong class="text-success">{{comment.emailId}} &nbsp;&nbsp;&nbsp;
@@ -79,8 +79,7 @@
                                                 </a>
                                                 <div class="media-body">
                                                     <span class="text-muted pull-right">
-                                                        <small
-                                                            class="text-muted">{{reply.replyDate|date:'medium':'GMT'}}
+                                                        <small class="text-muted">{{reply.replyDate|date:'medium'}}
                                                             ({{reply.replyDate |dateAgo}})</small>
                                                     </span>
                                                     <strong class="text-success">{{reply.email}}</strong>

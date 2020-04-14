@@ -6,9 +6,12 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class DateAgoPipe implements PipeTransform {
 
+
   transform(value: any, args?: any): any {
     if (value) {
-      const seconds = Math.floor((+new Date() - +new Date(value)) / 1000);
+      const seconds = Math.floor((+this.getNowUTC() - +new Date(value)) / 1000);
+
+      console.log(seconds)
       if (seconds < 29) // less than 30 seconds ago will show as 'Just now'
         return 'Just now';
       const intervals = {
@@ -32,6 +35,11 @@ export class DateAgoPipe implements PipeTransform {
       }
     }
     return value;
+  }
+
+  private getNowUTC() {
+    const now = new Date();
+    return new Date(now.getTime() + (now.getTimezoneOffset() * 60000));
   }
 
 }
