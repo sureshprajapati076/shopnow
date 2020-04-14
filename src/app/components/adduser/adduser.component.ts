@@ -17,13 +17,14 @@ export class AdduserComponent implements OnInit {
       "password": ['', Validators.required],
       "name": ['', Validators.required],
       "address": ['', [Validators.required, Validators.minLength(4)]],
-      "roles": ['', Validators.required]
+      "roles": ['']
     });
   }
   ngOnInit() {
     if (this.authService.isUserLoggedIn()) this.router.navigate(['/']);
   }
   createAccount() {
+    this.createAcc.patchValue({ 'roles': ['USER'] });
     this.httpClientService.addUser(this.createAcc.value)
       .subscribe(data => {
         if (data === null) {

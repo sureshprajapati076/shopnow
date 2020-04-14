@@ -8,7 +8,7 @@
             <img *ngIf="product.imageUrl!='default.png'" src="{{product.imageUrl}}" alt="">
             <img *ngIf="product.imageUrl=='default.png'" src="./assets/images/noimage.png">
 
-            <span href="#" class="adtocart" (click)="addToCart(product.id,product.name,product.unitPrice,1)">
+            <span class="adtocart" (click)="addToCart(product.id,product.name,product.unitPrice,1)">
                 <i class="fa fa-shopping-cart"></i>
             </span>
         </div>
