@@ -1,0 +1,10 @@
+
+git add .    
+git commit -m "msg"
+git push -u origin master 
+
+npm install -g angular-cli-ghpages
+
+ng build --prod --base-href "https://sureshprajapati076.github.io/shopnow/"      ====> shopnow is repo name
+
+ngh --dir dist/eshopping 
