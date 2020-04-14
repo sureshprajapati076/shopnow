@@ -23,6 +23,7 @@ import { DateAgoPipe } from './pipe/date-ago.pipe';
 import { BasicAuthHtppInterceptorService } from './service/basic-auth-htpp-interceptor.service';
 import { ErrorInterceptorService } from './service/error-interceptor.service';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +42,8 @@ import { ErrorInterceptorService } from './service/error-interceptor.service';
     WishlistComponent,
     ProductinfoComponent,
     FillPipe,
-    DateAgoPipe
+    DateAgoPipe,
+
   ],
   imports: [
     BrowserModule,
