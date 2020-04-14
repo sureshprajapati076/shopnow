@@ -22,7 +22,7 @@ export class ProductdetailsComponent implements OnInit {
     this.addComment = this.fb.group({
       "productId": [''],
       "comment": ['', Validators.required],
-      "stars": ['', [Validators.required, Validators.min(1), Validators.max(5)]]
+      "stars": ['',]
     });
   }
   comments
@@ -50,17 +50,21 @@ export class ProductdetailsComponent implements OnInit {
     }
     );
   }
-  public submitForm() {
-    this.addComment.patchValue({ productId: this.product.id });
-    this.httpClientService.postComment(this.addComment.value).subscribe(
-      data => {
-        this.toggle = !this.toggle
-        this.addComment.reset();
-        this.ngOnInit();
-      }, exp => {
-        console.log(exp)
-      }
-    );
+
+  public submitForm(stars) {
+    if (this.addComment.valid) {
+      this.addComment.patchValue({ stars: stars });
+      this.addComment.patchValue({ productId: this.product.id });
+      this.httpClientService.postComment(this.addComment.value).subscribe(
+        data => {
+          this.toggle = !this.toggle
+          this.addComment.reset();
+          this.ngOnInit();
+        }, exp => {
+          console.log(exp)
+        }
+      );
+    }
   }
   public submitReply(id, i) {
 

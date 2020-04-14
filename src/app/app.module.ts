@@ -51,6 +51,8 @@ import { ErrorInterceptorService } from './service/error-interceptor.service';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+
+
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS, useClass: BasicAuthHtppInterceptorService, multi: true

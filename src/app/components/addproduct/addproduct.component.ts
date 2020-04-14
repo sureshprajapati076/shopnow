@@ -40,7 +40,7 @@ export class AddproductComponent implements OnInit {
   selectedVendor
   vendors;
   ngOnInit() {
-    this.selectedVendor = 1
+    this.selectedVendor = '17626e5c-ae61-490d-bd9f-8878560d3330'
     this.loadVendors();
   }
   loadVendors() {
