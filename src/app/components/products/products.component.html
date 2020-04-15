@@ -4,8 +4,12 @@
 </h3>
 
 <div class="container" *ngIf="list">
-    <div class="item" *ngFor="let product of list; let i=index;">
+    <div class="item" *ngFor="let product of list | paginate: config; let i=index;">
         <app-productinfo [product]="product"></app-productinfo>
     </div>
 
+    <div class="text-center" style="width:78%;">
+        <hr />
+        <pagination-controls (pageChange)="pageChange($event)" class="my-pagination"></pagination-controls>
+    </div>
 </div>

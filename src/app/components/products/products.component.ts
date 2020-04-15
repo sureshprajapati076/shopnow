@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClientService } from '../../service/httpclient.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../../service/authentication.service';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
@@ -11,13 +11,25 @@ import { debounceTime } from 'rxjs/operators';
 })
 export class ProductsComponent implements OnInit {
 
-
+  config: any;
 
 
   addedtocart = false
   list
   isAdmin: any
-  constructor(private authService: AuthenticationService, private router: Router, private httpClientService: HttpClientService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private httpClientService: HttpClientService) {
+    this.config = {
+      currentPage: 1,
+      itemsPerPage: 6,
+      totalItems: 0
+    };
+    route.queryParams.subscribe(
+      params => this.config.currentPage = params['page'] ? params['page'] : 1);
+  }
+  pageChange(newPage: number) {
+    this.router.navigate([''], { queryParams: { page: newPage } });
+  }
+
   ngOnInit() {
 
 

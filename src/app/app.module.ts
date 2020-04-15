@@ -23,7 +23,7 @@ import { DateAgoPipe } from './pipe/date-ago.pipe';
 import { BasicAuthHtppInterceptorService } from './service/basic-auth-htpp-interceptor.service';
 import { ErrorInterceptorService } from './service/error-interceptor.service';
 import { TruncatePipe } from './pipe/truncate.pipe';
-
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -53,6 +53,7 @@ import { TruncatePipe } from './pipe/truncate.pipe';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxPaginationModule
 
 
   ],
