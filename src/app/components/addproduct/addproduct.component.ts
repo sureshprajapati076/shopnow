@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
 import { HttpClientService } from 'src/app/service/httpclient.service';
 import { PhoneValidator } from './validator';
 @Component({
@@ -50,7 +49,9 @@ export class AddproductComponent implements OnInit {
   }
   addProduct() {
     this.newProduct.patchValue({ vendor: { id: this.newProduct.get("vendor").value } });
-
+    if (this.newProduct.get('imageUrl').value === '') {
+      this.newProduct.patchValue({ 'imageUrl': 'default.png' })
+    }
     this.httpClientService.addProduct(this.newProduct.value)
       .subscribe(data => {
         this.newProduct.reset();
