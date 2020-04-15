@@ -2,9 +2,10 @@
     <section class="panel">
         <div class="pro-img-box">
             <a [routerLink]="['/productdetails', product.id]">
-                <img *ngIf="product.imageUrl!='default.png' && !addedtocart" src="{{product.imageUrl}}" alt="">
-                <img *ngIf="product.imageUrl=='default.png' && !addedtocart" src="./assets/images/noimage.png">
-                <img *ngIf="addedtocart" src="./assets/images/added.gif"> </a>
+                <img src="{{(product.imageUrl!='default.png' && !addedtocart)? product.imageUrl:(!addedtocart)?'./assets/images/noimage.png':'./assets/images/added.gif'}}"
+                    alt="">
+
+            </a>
             <span class="adtocart" (click)="addToCart(product.id,product.imageUrl,product.name,product.unitPrice,1)">
                 <i class="fa fa-shopping-cart"></i>
             </span>

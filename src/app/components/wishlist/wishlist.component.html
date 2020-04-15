@@ -10,7 +10,9 @@
             <tr [hidden]="visibleRowIndex[i] == true" *ngFor="let item of cart.saveForLater; let i=index">
 
                 <td><a style="text-decoration: none; color:black" [routerLink]="['/productdetails',item.productId]"><img
-                            height="45" width="45" src="{{item.imageUrl}}"> {{item.name}}</a> </td>
+                            height="45" width="45"
+                            src="{{(item.imageUrl!='default.png')? item.imageUrl:'./assets/images/noimage.png'}}">
+                        {{item.name}}</a> </td>
                 <td>{{item.unitPrice}}</td>
                 <td>
 

@@ -27,7 +27,7 @@
                     <span *ngFor="let product of order.productsOrdered">
                         <span style="width: auto;  margin: 5px;">
                             <a [routerLink]="['/productdetails',product.productId]"><img width="40" height="40"
-                                    src="{{product.imageUrl}}">
+                                    src="{{(product.imageUrl!='default.png')? product.imageUrl:'./assets/images/noimage.png'}}">
                             </a>
                             &times; {{product.quantity}}
                         </span>
