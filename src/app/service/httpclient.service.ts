@@ -45,8 +45,8 @@ export class HttpClientService {
   public addReply(comment: any, id: string): Observable<any> {
     return this.apiService.post(ApplicationConstants.API_PATH.addreply + id, { comment });
   }
-  public addToCart(productId: any, name: any, unitPrice: any, quantity: any): Observable<any> {
-    return this.apiService.post(ApplicationConstants.API_PATH.addtocart, { productId, name, unitPrice, quantity });
+  public addToCart(productId: any, imageUrl: any, name: any, unitPrice: any, quantity: any): Observable<any> {
+    return this.apiService.post(ApplicationConstants.API_PATH.addtocart, { productId, imageUrl, name, unitPrice, quantity });
   }
   public removeFromCart(productId: any, name: any, unitPrice: any, quantity: any): Observable<any> {
     return this.apiService.post(ApplicationConstants.API_PATH.removefromcart, { productId, name, unitPrice, quantity });

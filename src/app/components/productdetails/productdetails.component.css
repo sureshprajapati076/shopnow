@@ -2,7 +2,7 @@
 .rating {
   unicode-bidi: bidi-override;
   direction: rtl;
-  font-size: 4em; 
+  font-size: 3em; 
   color: Tomato;
 }
 .rating > span {

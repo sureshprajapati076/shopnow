@@ -2,8 +2,7 @@
 
 <div *ngIf="loading else loaded" class="text-center">
 
-    <div>Please check @GetMapping(value="/my-order-list") backend OrderController Thread.sleep() to remove this loading
-        time</div>
+
     <div class="spinner-grow text-muted"></div>
     <div class="spinner-grow text-primary"></div>
     <div class="spinner-grow text-success"></div>
@@ -19,23 +18,27 @@
         <table class="table">
             <th>#</th>
             <th>Order Details</th>
+            <th>Ordered Date</th>
             <th>Total Price</th>
             <tr *ngFor="let order of orderhistory; let i=index">
                 <td>{{i+1}}</td>
                 <td>
 
                     <span *ngFor="let product of order.productsOrdered">
-                        <span style="width: auto; background-color: cyan; margin: 5px;">
-                            {{product.name}} $ {{product.unitPrice |number : '.2-2'}}
-                            ({{product.quantity}})
+                        <span style="width: auto;  margin: 5px;">
+                            <a [routerLink]="['/productdetails',product.productId]"><img width="40" height="40"
+                                    src="{{product.imageUrl}}">
+                            </a>
+                            &times; {{product.quantity}}
                         </span>
                     </span>
 
 
 
                 </td>
+                <td>{{order.orderDate|date:'medium':'-1000'}}</td>
 
-                <td>{{order.totalCost |number : '.2-2'}}</td>
+                <td>$ {{order.totalCost |number : '.2-2'}}</td>
             </tr>
         </table>
     </div>

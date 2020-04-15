@@ -20,7 +20,7 @@ export class CartComponent implements OnInit {
       .pipe(debounceTime(500))
       .subscribe((item) => {
         let product = this.cart.productsInCart[item.id];
-        this.httpClientService.addToCart(product.productId, product.name, product.unitPrice, item.quantity).subscribe(
+        this.httpClientService.addToCart(product.productId, product.imageUrl, product.name, product.unitPrice, item.quantity).subscribe(
           () => {
 
             this.totalCost += product.unitPrice * item.quantity;

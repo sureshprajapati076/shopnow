@@ -22,7 +22,7 @@
                     </div>
                     <ng-template #loaded>
                         <div class="card-body">
-                            <form [formGroup]="addComment" (ngSubmit)="submitForm()">
+                            <form [formGroup]="addComment">
                                 <textarea id="comment" name="comment" type="text" class="form-control" rows="3"
                                     formControlName="comment" required
                                     placeholder="write a comment... And Click Stars to submit"></textarea>

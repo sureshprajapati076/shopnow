@@ -67,6 +67,7 @@
     
     .product-list .pro-img-box {
         position: relative;
+        cursor: pointer;
       
     }
     .adtocart {

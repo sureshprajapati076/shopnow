@@ -1,23 +1,19 @@
 <div class="row product-list">
     <section class="panel">
         <div class="pro-img-box">
-
-
-
-
-            <img *ngIf="product.imageUrl!='default.png'" src="{{product.imageUrl}}" alt="">
-            <img *ngIf="product.imageUrl=='default.png'" src="./assets/images/noimage.png">
-
-            <span class="adtocart" (click)="addToCart(product.id,product.name,product.unitPrice,1)">
+            <a [routerLink]="['/productdetails', product.id]">
+                <img *ngIf="product.imageUrl!='default.png' && !addedtocart" src="{{product.imageUrl}}" alt="">
+                <img *ngIf="product.imageUrl=='default.png' && !addedtocart" src="./assets/images/noimage.png">
+                <img *ngIf="addedtocart" src="./assets/images/added.gif"> </a>
+            <span class="adtocart" (click)="addToCart(product.id,product.imageUrl,product.name,product.unitPrice,1)">
                 <i class="fa fa-shopping-cart"></i>
             </span>
+
         </div>
         <div class="panel-body text-center">
             <h4>
-                <span (click)="loadComments(product.id)" class="pro-title">
+                <span class="pro-title">
                     {{product.name}}</span>
-                <span *ngIf="addedtocart">Added To Cart</span>
-
             </h4>
             <p class="price">$ {{product.unitPrice |number : '.2-2'}}</p>
         </div>

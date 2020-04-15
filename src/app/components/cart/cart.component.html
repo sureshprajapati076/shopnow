@@ -1,15 +1,17 @@
 <div style="width: 90%; margin: 0 auto;">
     <h2>Your Cart: </h2>
+
     <div *ngIf="cart">
         <table *ngIf="totalCost != 0; else other_content" class="table">
 
-            <th>Name</th>
+            <th>Product</th>
             <th>Unit Price</th>
             <th>Quantity</th>
             <th>Sub-Total</th>
             <tr [hidden]="visibleRowIndex[i] == true" *ngFor="let item of cart.productsInCart; let i=index">
 
-                <td>{{item.name}}</td>
+                <td><a style="text-decoration: none; color:black" [routerLink]="['/productdetails',item.productId]"><img
+                            height="45" width="45" src="{{item.imageUrl}}">{{item.name}} </a> </td>
                 <td>{{item.unitPrice}}</td>
                 <td>
 

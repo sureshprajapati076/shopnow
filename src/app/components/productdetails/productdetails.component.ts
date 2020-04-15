@@ -30,6 +30,7 @@ export class ProductdetailsComponent implements OnInit {
   ngOnInit() {
     this.productId = this.activatedRoute.snapshot.params["productId"];
 
+
     this.httpClientService.getItemById(this.productId).subscribe(
       data => {
         this.product = data.body
