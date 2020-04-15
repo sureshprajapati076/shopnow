@@ -1,4 +1,4 @@
-export class ApplicationConstants {
+export class ApplicationConstants1 {
     static readonly API_PATH = {
         login: 'https://cors-anywhere.herokuapp.com/http://34.70.194.228:8055/signin',
         signup: 'https://cors-anywhere.herokuapp.com/http://34.70.194.228:8055/signup',
@@ -23,27 +23,27 @@ export class ApplicationConstants {
     }
 }
 
-// export class ApplicationConstants1 {
-//     static readonly API_PATH = {
-//         login: 'http://34.70.194.228:8055/signin',
-//         signup: 'http://34.70.194.228:8055/signup',
-//         getuserdetails: 'http://34.70.194.228:8055/get-user-detail',
-//         updateuser: 'http://34.70.194.228:8055/update-user',
-//         checkadmin: 'http://34.70.194.228:8055/checkifadmin',
-//         getproducts: 'http://34.70.194.228:8055/products/getproducts',
-//         getvendors: 'http://34.70.194.228:8055/products/getvendors',
-//         getcartitems: 'http://34.70.194.228:8055/cart/get-cart-items',
-//         getitembyid: 'http://34.70.194.228:8055/products/getbyid/',
-//         addproduct: 'http://34.70.194.228:8055/products/addproduct',
-//         addvendor: 'http://34.70.194.228:8055/products/addvendor',
-//         addcomment: 'http://34.70.194.228:8055/comments/add',
-//         addreply: 'http://34.70.194.228:8055/comments/reply/',
-//         addtocart: 'http://34.70.194.228:8055/cart/add-product',
-//         removefromcart: 'http://34.70.194.228:8055/cart/remove-product',
-//         saveforlater: 'http://34.70.194.228:8055/cart/save-for-later',
-//         putback2cart: 'http://34.70.194.228:8055/cart/put-back-to-cart',
-//         makepayment: 'http://34.70.194.228:8055/cart/make-payment',
-//         loadcomment: 'http://34.70.194.228:8055/comments/find/',
-//         myorderhistory: 'http://34.70.194.228:8055/cart/my-order-list'
-//     }
-// }
+export class ApplicationConstants {
+    static readonly API_PATH = {
+        login: 'http://localhost:8055/signin',
+        signup: 'http://localhost:8055/signup',
+        getuserdetails: 'http://localhost:8055/get-user-detail',
+        updateuser: 'http://localhost:8055/update-user',
+        checkadmin: 'http://localhost:8055/checkifadmin',
+        getproducts: 'http://localhost:8055/products/getproducts',
+        getvendors: 'http://localhost:8055/products/getvendors',
+        getcartitems: 'http://localhost:8055/cart/get-cart-items',
+        getitembyid: 'http://localhost:8055/products/getbyid/',
+        addproduct: 'http://localhost:8055/products/addproduct',
+        addvendor: 'http://localhost:8055/products/addvendor',
+        addcomment: 'http://localhost:8055/comments/add',
+        addreply: 'http://localhost:8055/comments/reply/',
+        addtocart: 'http://localhost:8055/cart/add-product',
+        removefromcart: 'http://localhost:8055/cart/remove-product',
+        saveforlater: 'http://localhost:8055/cart/save-for-later',
+        putback2cart: 'http://localhost:8055/cart/put-back-to-cart',
+        makepayment: 'http://localhost:8055/cart/make-payment',
+        loadcomment: 'http://localhost:8055/comments/find/',
+        myorderhistory: 'http://localhost:8055/cart/my-order-list'
+    }
+}

@@ -12,15 +12,16 @@ import { debounceTime } from 'rxjs/operators';
 export class ProductsComponent implements OnInit {
 
   config: any;
-
+  currentPage
 
   addedtocart = false
   list
   isAdmin: any
   constructor(private route: ActivatedRoute, private router: Router, private httpClientService: HttpClientService) {
+
     this.config = {
       currentPage: 1,
-      itemsPerPage: 6,
+      itemsPerPage: 3,
       totalItems: 0
     };
     route.queryParams.subscribe(
@@ -30,18 +31,29 @@ export class ProductsComponent implements OnInit {
     this.router.navigate([''], { queryParams: { page: newPage } });
   }
 
+
+
+  last;
   ngOnInit() {
 
+    this.currentPage = 1;
 
-
-
+    this.last = false;
 
     this.addedtocart = false
     this.checkIfAdmin();
+    this.getProducts();
 
-    this.httpClientService.listProducts().subscribe(
+  }
+
+  public getProducts() {
+    this.httpClientService.listProducts(this.currentPage).subscribe(
       data => {
-        this.list = data.body
+        this.list = data.body.content
+        this.last = data.body.last
+
+
+
       }, exception => {
         if (exception.status != 200) {
           this.router.navigate(['/error-page']);
@@ -49,6 +61,11 @@ export class ProductsComponent implements OnInit {
       }
     )
   }
+
+
+
+
+
   public checkIfAdmin() {
 
     this.httpClientService.checkIfAdmin().subscribe(

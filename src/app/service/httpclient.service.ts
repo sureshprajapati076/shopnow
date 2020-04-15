@@ -17,8 +17,8 @@ export class HttpClientService {
   public checkIfAdmin(): Observable<any> {
     return this.apiService.get(ApplicationConstants.API_PATH.checkadmin);
   }
-  public listProducts(): Observable<any> {
-    return this.apiService.get(ApplicationConstants.API_PATH.getproducts);
+  public listProducts(page): Observable<any> {
+    return this.apiService.get(ApplicationConstants.API_PATH.getproducts + '?pageNumber=' + page);
   }
   public getVendors(): Observable<any> {
     return this.apiService.get(ApplicationConstants.API_PATH.getvendors);

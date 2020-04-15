@@ -12,4 +12,7 @@
         <hr />
         <pagination-controls (pageChange)="pageChange($event)" class="my-pagination"></pagination-controls>
     </div>
+
 </div>
+<span *ngIf="currentPage>1" (click)="currentPage=currentPage-1;getProducts()">Back</span>
+<span *ngIf="!last" (click)="currentPage=currentPage+1;getProducts()">Forward</span>
