@@ -22,6 +22,7 @@ import { FillPipe } from './pipe/fill.pipe';
 import { DateAgoPipe } from './pipe/date-ago.pipe';
 import { BasicAuthHtppInterceptorService } from './service/basic-auth-htpp-interceptor.service';
 import { ErrorInterceptorService } from './service/error-interceptor.service';
+import { TruncatePipe } from './pipe/truncate.pipe';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { ErrorInterceptorService } from './service/error-interceptor.service';
     ProductinfoComponent,
     FillPipe,
     DateAgoPipe,
+    TruncatePipe,
 
   ],
   imports: [

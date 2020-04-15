@@ -56,9 +56,18 @@
                                             <i *ngFor="let ist of comment.stars | fill" class="fa fa-star"></i>
                                             {{comment.stars}}</strong>
                                         <p>
-                                            {{comment.comment}}
+                                            <span *ngIf="comment.shrink!=1">
+                                                {{comment.comment |truncate:20}}
+                                            </span>
+                                            <span *ngIf="comment.shrink==1">
+                                                {{comment.comment}}
+                                            </span>
+                                            <span style="cursor: pointer;color:blue;" (click)="comment.shrink=1"
+                                                *ngIf="comment.comment.length > 20 && comment.shrink!=1">See
+                                                more</span>
+                                            <br />
                                             <span [hidden]="hideme[i]" (click)="hideme[i] = !hideme[i]"
-                                                style="color: blue; cursor: pointer;">
+                                                style="position:relative;left:30px;color: grey; cursor: pointer;">
                                                 Reply</span>
                                             <br />
                                             <span [hidden]="!hideme[i]">
@@ -69,6 +78,7 @@
                                                         style="margin-right: 2em;">Reset</button>
                                                     <span class="btn btn-outline-warning" style="margin-right: 2em;"
                                                         (click)="hideme[i] =!hideme[i]">Cancel</span>
+
                                                     <button id="btnSubmit" type="submit"
                                                         class="btn btn-outline-primary">Reply</button>
                                                 </form>
