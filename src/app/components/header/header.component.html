@@ -85,7 +85,10 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" [routerLink]="['/cart']"><i style="font-size:1.5em;" class="fa fa-shopping-cart"
-                    aria-hidden="true"></i></a>
+                    aria-hidden="true"></i>
+                <span *ngIf="cartItemCount>0" class='badge' id='lblCartCount'> {{cartItemCount}} </span>
+
+            </a>
         </li>
 
     </ul>

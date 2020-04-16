@@ -3,13 +3,14 @@ import { HttpClientService } from '../../service/httpclient.service';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import { CartItemCountService } from 'src/app/service/cart-item-count.service';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  constructor(private router: Router, private httpClientService: HttpClientService) { }
+  constructor(private cartItemService: CartItemCountService, private router: Router, private httpClientService: HttpClientService) { }
   visibleRowIndex = [];
   cart;
   totalCost;
@@ -22,6 +23,7 @@ export class CartComponent implements OnInit {
         let product = this.cart.productsInCart[item.id];
         this.httpClientService.addToCart(product.productId, product.imageUrl, product.name, product.unitPrice, item.quantity).subscribe(
           () => {
+            this.cartItemService.emitValue(item.quantity);
 
             this.totalCost += product.unitPrice * item.quantity;
           }
@@ -56,11 +58,17 @@ export class CartComponent implements OnInit {
       }
     );
   }
-  public saveForLater(i, id, subtotal) {
-    this.totalCost = this.totalCost - subtotal;
+  public saveForLater(i, id, price, amount) {
+    this.totalCost = this.totalCost - price * amount;
     this.httpClientService.saveForLater(id).subscribe(
       data => {
+
+        this.cartItemService.emitValue(-amount);
         this.visibleRowIndex[i] = true;
+
+
+
+
         // this.loadCart();
       }
     );
@@ -68,6 +76,8 @@ export class CartComponent implements OnInit {
   public makepayment() {
     this.httpClientService.makePayment().subscribe(data => {
       if (data.status == 200) {
+        this.cartItemService.clearCounter();
+
         this.router.navigate(['/'])
       } else {
         this.router.navigate(['/error-page'])
@@ -88,6 +98,7 @@ export class CartComponent implements OnInit {
         if (product.quantity == 0) {
           this.visibleRowIndex[i] = true;
         }
+        this.cartItemService.emitValue(-1);
       }
     );
   }

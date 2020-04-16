@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../service/authentication.service';
+import { HttpClientService } from 'src/app/service/httpclient.service';
+import { CartItemCountService } from 'src/app/service/cart-item-count.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +16,7 @@ export class LoginComponent implements OnInit {
   invalidLogin = false
 
 
-  constructor(private router: Router,
+  constructor(private httpClientService: HttpClientService, private cartItemService: CartItemCountService, private router: Router,
     private loginservice: AuthenticationService) { }
 
   ngOnInit() {
@@ -29,6 +31,24 @@ export class LoginComponent implements OnInit {
         //console.log(JSON.stringify(data));
         this.router.navigate(['/home'])
         this.invalidLogin = false
+
+        this.httpClientService.showCart().subscribe(
+          res => {
+            let count = 0;
+            this.cartItemService.clearCounter();
+            if (res.body.productsInCart) {
+              for (let product of res.body.productsInCart) {
+                count += product.quantity;
+              }
+            }
+
+            this.cartItemService.emitValue(count)
+
+
+          }
+        );
+
+
 
         // localStorage.setItem('token', 'Bearer ' + data.token);
 

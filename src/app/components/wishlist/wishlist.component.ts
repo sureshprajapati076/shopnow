@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClientService } from '../../service/httpclient.service';
+import { CartItemCountService } from 'src/app/service/cart-item-count.service';
 
 @Component({
   selector: 'app-wishlist',
@@ -8,7 +9,7 @@ import { HttpClientService } from '../../service/httpclient.service';
   styleUrls: ['./wishlist.component.css']
 })
 export class WishlistComponent implements OnInit {
-  constructor(private router: Router, private httpClientService: HttpClientService) { }
+  constructor(private cartItemService: CartItemCountService, private router: Router, private httpClientService: HttpClientService) { }
 
   cart;
   totalCost;
@@ -36,10 +37,11 @@ export class WishlistComponent implements OnInit {
     );
   }
 
-  public putBack2Cart(i, id, subtotal) {
-    this.totalCost = this.totalCost - subtotal;
+  public putBack2Cart(i, id, cost, total) {
+    this.totalCost = this.totalCost - cost * total;
     this.httpClientService.putBack2Cart(id).subscribe(
       data => {
+        this.cartItemService.emitValue(total);
         this.visibleRowIndex[i] = true;
         // this.ngOnInit();
       }
