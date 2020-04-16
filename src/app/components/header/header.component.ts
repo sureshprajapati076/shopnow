@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit {
   }
   placeHolderMsg = 'Search...'
   makeSearch() {
-    if (!this.searchWord || this.searchWord != undefined || this.searchWord.length < 4) {
+    if (!this.searchWord || this.searchWord == undefined || this.searchWord.length < 4) {
       this.searchWord = ''
       this.placeHolderMsg = 'At least 4 characters to make search';
       setTimeout(() => {
