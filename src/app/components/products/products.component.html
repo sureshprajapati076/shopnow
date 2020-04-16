@@ -7,11 +7,13 @@
         <app-productinfo [product]="product"></app-productinfo>
     </div>
 
+    <button style="width: 100px; height: 40px;" *ngIf="currentPage>1"
+        (click)="currentPage=currentPage-1;getProducts()">Back</button>
     <div class="text-center" style="width:78%;">
         <hr />
         <pagination-controls (pageChange)="pageChange($event)" class="my-pagination"></pagination-controls>
     </div>
+    <button style="width: 100px; height: 40px;" *ngIf="!last" (click)="currentPage=currentPage+1;getProducts()">Even
+        More</button>
 
 </div>
-<span *ngIf="currentPage>1" (click)="currentPage=currentPage-1;getProducts()">Back</span>
-<span *ngIf="!last" (click)="currentPage=currentPage+1;getProducts()">Forward</span>
