@@ -24,13 +24,14 @@
                 <td>{{i+1}}</td>
                 <td>
 
-                    <span *ngFor="let product of order.productsOrdered">
+                    <span *ngFor="let product of order.productsOrdered; let i=index">
                         <span style="width: auto;  margin: 5px;">
                             <a [routerLink]="['/productdetails',product.productId]"><img width="40" height="40"
                                     src="{{(product.imageUrl!='default.png')? product.imageUrl:'./assets/images/noimage.png'}}">
                             </a>
                             &times; {{product.quantity}}
                         </span>
+                        <br *ngIf="(i+1)%3==0" />
                     </span>
 
 
