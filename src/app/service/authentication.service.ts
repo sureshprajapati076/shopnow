@@ -27,13 +27,35 @@ export class AuthenticationService {
   ) {
   }
 
+  user: any
   authenticate(username, password) {
     return this.httpClient.post<any>(ApplicationConstants.API_PATH.login, { username, password }).pipe(
       map(
         userData => {
-          localStorage.setItem('username', username);
+
+
+
+          localStorage.setItem('username', username)
           let tokenStr = 'Bearer ' + userData.token;
           localStorage.setItem('token', tokenStr);
+
+
+          this.httpClient.get(ApplicationConstants.API_PATH.getuserdetails).subscribe(
+            res => {
+
+              this.user = res
+
+              if (this.user.roles.indexOf("ADMIN") !== -1) {
+                localStorage.setItem('role', 'ADMIN')
+              } else {
+                localStorage.setItem('role', 'OTHERS')
+              }
+              localStorage.setItem('username', this.user.name)
+
+            }
+          );
+
+
           return userData;
         }
       )
@@ -46,6 +68,9 @@ export class AuthenticationService {
     let user = localStorage.getItem('username')
     //console.log(!(user === null))
     return !(user === null)
+  }
+  isAdmin() {
+    return localStorage.getItem('role') === 'ADMIN'
   }
 
   logOut() {

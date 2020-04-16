@@ -1,27 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClientService } from '../../service/httpclient.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthenticationService } from '../../service/authentication.service';
-import { Subject } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
+import { CacheForProductListService } from 'src/app/service/cache-for-product-list.service';
+import { AuthenticationService } from 'src/app/service/authentication.service';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-
   config: any;
   currentPage
-
   addedtocart = false
   list
-  isAdmin: any
-  constructor(private route: ActivatedRoute, private router: Router, private httpClientService: HttpClientService) {
-
+  constructor(public authService: AuthenticationService, private route: ActivatedRoute, private router: Router, private httpClientService: HttpClientService, private cachedService: CacheForProductListService) {
     this.config = {
       currentPage: 1,
-      itemsPerPage: 3,
+      itemsPerPage: 6,
       totalItems: 0
     };
     route.queryParams.subscribe(
@@ -30,30 +25,22 @@ export class ProductsComponent implements OnInit {
   pageChange(newPage: number) {
     this.router.navigate([''], { queryParams: { page: newPage } });
   }
-
-
-
   last;
   ngOnInit() {
 
     this.currentPage = 1;
-
     this.last = false;
-
     this.addedtocart = false
-    this.checkIfAdmin();
     this.getProducts();
 
   }
-
   public getProducts() {
-    this.httpClientService.listProducts(this.currentPage).subscribe(
+    this.cachedService.getProducts(this.currentPage).subscribe(
       data => {
+
         this.list = data.body.content
         this.last = data.body.last
-
-
-
+        this.config.currentPage = 1;
       }, exception => {
         if (exception.status != 200) {
           this.router.navigate(['/error-page']);
@@ -61,25 +48,4 @@ export class ProductsComponent implements OnInit {
       }
     )
   }
-
-
-
-
-
-  public checkIfAdmin() {
-
-    this.httpClientService.checkIfAdmin().subscribe(
-      data => {
-        this.isAdmin = data.body
-
-      }, exp => {
-        console.log("ERROR MSG=" + exp)
-      }
-
-
-    );
-  }
-
-
-
 }

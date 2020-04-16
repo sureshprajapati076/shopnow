@@ -14,8 +14,8 @@ export class HttpClientService {
   public updateUserProfile(user: any) {
     return this.apiService.post(ApplicationConstants.API_PATH.updateuser, user);
   }
-  public checkIfAdmin(): Observable<any> {
-    return this.apiService.get(ApplicationConstants.API_PATH.checkadmin);
+  public search(name) {
+    return this.apiService.get(ApplicationConstants.API_PATH.search + '?name=' + name);
   }
   public listProducts(page): Observable<any> {
     return this.apiService.get(ApplicationConstants.API_PATH.getproducts + '?pageNumber=' + page);

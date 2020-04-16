@@ -12,12 +12,14 @@ import { AddproductComponent } from './components/addproduct/addproduct.componen
 import { AddproductGuardService } from './service/addproduct-guard.service';
 import { UserprofileComponent } from './components/userprofile/userprofile.component';
 import { AuthGaurdService } from './service/auth-guard.service';
+import { SearchComponent } from './search/search.component';
 
 
 const routes: Routes = [
   { path: '', component: ProductsComponent },
   { path: 'products', component: ProductsComponent },
   { path: 'home', component: ProductsComponent },
+  { path: 'search', component: SearchComponent },
   { path: 'error-page', component: ErrorPageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: AdduserComponent },

@@ -1,5 +1,5 @@
 <h3>
-    <a *ngIf="isAdmin && isAdmin.role == 'ADMIN'" routerLink="/addproduct" class="nav-link">Add Product / Vendor</a>
+    <a *ngIf="authService.isAdmin()" routerLink="/addproduct" class="nav-link">Add Product / Vendor</a>
     <span style="position: fixed; right:0px; top :70px;" *ngIf="addedtocart">Added To Cart</span>
 </h3>
 

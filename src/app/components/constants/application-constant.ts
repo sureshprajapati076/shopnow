@@ -2,9 +2,9 @@ export class ApplicationConstants1 {
     static readonly API_PATH = {
         login: 'https://cors-anywhere.herokuapp.com/http://34.70.194.228:8055/signin',
         signup: 'https://cors-anywhere.herokuapp.com/http://34.70.194.228:8055/signup',
+        search: 'https://cors-anywhere.herokuapp.com/http://34.70.194.228:8055/products/search',
         getuserdetails: 'https://cors-anywhere.herokuapp.com/http://34.70.194.228:8055/get-user-detail',
         updateuser: 'https://cors-anywhere.herokuapp.com/http://34.70.194.228:8055/update-user',
-        checkadmin: 'https://cors-anywhere.herokuapp.com/http://34.70.194.228:8055/checkifadmin',
         getproducts: 'https://cors-anywhere.herokuapp.com/http://34.70.194.228:8055/products/getproducts',
         getvendors: 'https://cors-anywhere.herokuapp.com/http://34.70.194.228:8055/products/getvendors',
         getcartitems: 'https://cors-anywhere.herokuapp.com/http://34.70.194.228:8055/cart/get-cart-items',
@@ -27,9 +27,9 @@ export class ApplicationConstants {
     static readonly API_PATH = {
         login: 'http://localhost:8055/signin',
         signup: 'http://localhost:8055/signup',
+        search: 'http://localhost:8055/products/search',
         getuserdetails: 'http://localhost:8055/get-user-detail',
         updateuser: 'http://localhost:8055/update-user',
-        checkadmin: 'http://localhost:8055/checkifadmin',
         getproducts: 'http://localhost:8055/products/getproducts',
         getvendors: 'http://localhost:8055/products/getvendors',
         getcartitems: 'http://localhost:8055/cart/get-cart-items',

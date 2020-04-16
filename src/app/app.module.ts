@@ -24,6 +24,7 @@ import { BasicAuthHtppInterceptorService } from './service/basic-auth-htpp-inter
 import { ErrorInterceptorService } from './service/error-interceptor.service';
 import { TruncatePipe } from './pipe/truncate.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     FillPipe,
     DateAgoPipe,
     TruncatePipe,
+    SearchComponent,
 
   ],
   imports: [

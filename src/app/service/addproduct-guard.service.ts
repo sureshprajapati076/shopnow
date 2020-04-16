@@ -12,16 +12,6 @@ export class AddproductGuardService implements CanActivate {
   result;
   constructor(private httpClientService: HttpClientService, private router: Router) { }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    return this.httpClientService.checkIfAdmin().pipe(map(
-      data => {
-
-        this.result = data.body
-        if (this.result.role == 'ADMIN') {
-          return true;
-        }
-        this.router.navigate(['/error-page'])
-        return false;
-      }
-    ));
+    return localStorage.getItem('role') === 'ADMIN';
   }
 }

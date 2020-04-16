@@ -12,17 +12,28 @@ import { HttpClient } from '@angular/common/http';
 export class HeaderComponent implements OnInit {
 
 
+  searchWord
 
 
-  //  user;
-  constructor(public router: Router, public loginService: AuthenticationService, private httpClient: HttpClient) { }
+  constructor(public router: Router, public loginService: AuthenticationService, private httpClient: HttpClientService) { }
   ngOnInit() {
-    //   this.user = localStorage.getItem('username')
+
+
   }
   logOut() {
-    // localStorage.removeItem('username')
+
     localStorage.clear();
     this.router.navigate(['login'])
+  }
+  makeSearch() {
+    this.httpClient.search(this.searchWord).subscribe(
+      res => {
+
+
+        this.router.navigate(['search'], { state: { data: JSON.stringify(res.body) } });
+      }
+
+    );
   }
 
 
