@@ -25,10 +25,19 @@ export class HeaderComponent implements OnInit {
     localStorage.clear();
     this.router.navigate(['login'])
   }
+  placeHolderMsg = 'Search...'
   makeSearch() {
+    if (!this.searchWord || this.searchWord != undefined || this.searchWord.length < 4) {
+      this.searchWord = ''
+      this.placeHolderMsg = 'At least 4 characters to make search';
+      setTimeout(() => {
+        this.placeHolderMsg = 'Search...'
+      }, 2000);
 
-    this.router.navigate(['/search/' + this.searchWord]);
 
+    } else {
+      this.router.navigate(['/search/' + this.searchWord]);
+    }
   }
 
 
