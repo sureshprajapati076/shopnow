@@ -1,3 +1,8 @@
-<h1>THis page is currently under construction!!!</h1>
+<div class="container" *ngIf="list">
+    <div class="item" *ngFor="let product of list ">
+        <app-productinfo [product]="product"></app-productinfo>
+    </div>
 
-{{list}}
+    <div *ngIf="list.length==0">
+        <h1> No search results Found</h1>
+    </div>

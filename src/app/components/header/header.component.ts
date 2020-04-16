@@ -26,14 +26,9 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['login'])
   }
   makeSearch() {
-    this.httpClient.search(this.searchWord).subscribe(
-      res => {
 
+    this.router.navigate(['/search/' + this.searchWord]);
 
-        this.router.navigate(['search'], { state: { data: JSON.stringify(res.body) } });
-      }
-
-    );
   }
 
 
