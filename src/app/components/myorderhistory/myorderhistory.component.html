@@ -21,7 +21,7 @@
             <th>Ordered Date</th>
             <th>Total Price</th>
             <tr *ngFor="let order of orderhistory; let i=index">
-                <td>{{i+1}}</td>
+                <td class="align-middle">{{i+1}}</td>
                 <td>
                     <table class="table">
                         <th>Item</th>
@@ -46,9 +46,9 @@
 
 
                 </td>
-                <td>{{order.orderDate|date:'medium':'-1000'}}</td>
+                <td class="align-middle">{{order.orderDate|date:'medium':'-1000'}}</td>
 
-                <td>$ {{order.totalCost |number : '.2-2'}}</td>
+                <td class="align-middle">$ {{order.totalCost |number : '.2-2'}}</td>
             </tr>
         </table>
     </div>
