@@ -26,6 +26,7 @@ opacity: 0.85;
 display: inline-block;
 font-size: 17px;
 line-height: 20px;
+border-radius: 25px;
 text-decoration: none; /* remove underline from anchors */
 }
 

@@ -22,7 +22,7 @@
                     </div>
                     <ng-template #loaded>
                         <div class="card-body">
-                            <form [formGroup]="addComment">
+                            <form *ngIf="isVerified=='YES' else asktoverify" [formGroup]="addComment">
                                 <textarea name="comment" type="text" class="form-control" rows="3"
                                     formControlName="comment" required
                                     placeholder="write a comment... And Click Stars to submit"></textarea>
@@ -39,6 +39,26 @@
                                 <hr />
 
                             </form>
+                            <ng-template #asktoverify>
+                                <div *ngIf="isVerified=='GUEST' else showmsgtoverify">
+                                    Please Login First to comment <a [routerLink]="['/login']">Login</a>
+
+                                </div>
+                                <ng-template #showmsgtoverify>
+                                    <span class="alert alert-primary">Please Verify Email First to comment</span> <br />
+                                    <br />
+                                    <button class="btn btn-info" (click)="sendCode()">Send Verification
+                                        Code</button>
+                                    <br /> <br />
+                                    <span *ngIf="codeSent">
+                                        <input
+                                            [className]="invalidcodemessage!='true' ? 'form-control' : 'form-control is-invalid'"
+                                            [(ngModel)]="verificationCode" placeholder="Enter 6 digit code" /><button
+                                            class="btn btn-outline-success" (click)=verify()>Verify</button>
+
+                                    </span>
+                                </ng-template>
+                            </ng-template>
                             <div class="clearfix"></div>
                             <hr>
                             <ul class="media-list">

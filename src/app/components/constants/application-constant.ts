@@ -20,7 +20,9 @@ export class ApplicationConstants {
         putback2cart: 'https://cors-anywhere.herokuapp.com/http://34.70.194.228:8055/cart/put-back-to-cart',
         makepayment: 'https://cors-anywhere.herokuapp.com/http://34.70.194.228:8055/cart/make-payment',
         loadcomment: 'https://cors-anywhere.herokuapp.com/http://34.70.194.228:8055/comments/find/',
-        myorderhistory: 'https://cors-anywhere.herokuapp.com/http://34.70.194.228:8055/cart/my-order-list'
+        myorderhistory: 'https://cors-anywhere.herokuapp.com/http://34.70.194.228:8055/cart/my-order-list',
+        sendcode: 'https://cors-anywhere.herokuapp.com/http://34.70.194.228:8055/sendemail',
+        verifycode: 'https://cors-anywhere.herokuapp.com/http://34.70.194.228:8055/verify-code'
     }
 }
 
@@ -46,6 +48,8 @@ export class ApplicationConstants1 {
         putback2cart: 'http://localhost:8055/cart/put-back-to-cart',
         makepayment: 'http://localhost:8055/cart/make-payment',
         loadcomment: 'http://localhost:8055/comments/find/',
-        myorderhistory: 'http://localhost:8055/cart/my-order-list'
+        myorderhistory: 'http://localhost:8055/cart/my-order-list',
+        sendcode: 'http://localhost:8055/sendemail',
+        verifycode: 'http://localhost:8055/verify-code'
     }
 }

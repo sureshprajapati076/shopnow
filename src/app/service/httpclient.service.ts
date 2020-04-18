@@ -23,6 +23,13 @@ export class HttpClientService {
   public getVendors(): Observable<any> {
     return this.apiService.get(ApplicationConstants.API_PATH.getvendors);
   }
+  public sendVerificationCode(): Observable<any> {
+    return this.apiService.get(ApplicationConstants.API_PATH.sendcode);
+  }
+  public veryfyCode(code: any): Observable<any> {
+    return this.apiService.post(ApplicationConstants.API_PATH.verifycode, code);
+  }
+
   public showCart(): Observable<any> {
     return this.apiService.get(ApplicationConstants.API_PATH.getcartitems);
   }
