@@ -25,6 +25,24 @@ import { ErrorInterceptorService } from './service/error-interceptor.service';
 import { TruncatePipe } from './pipe/truncate.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SearchComponent } from './search/search.component';
+import {
+  SocialLoginModule,
+  AuthServiceConfig,
+  GoogleLoginProvider
+
+} from 'angular-6-social-login';
+
+export function getAuthServiceConfigs() {
+  const config = new AuthServiceConfig(
+    [
+      {
+        id: GoogleLoginProvider.PROVIDER_ID,
+        provider: new GoogleLoginProvider('876148984713-kkvlj74boqcpg6p5apo0thuspfjbf8fu.apps.googleusercontent.com')
+      }
+    ]
+  );
+  return config;
+}
 
 @NgModule({
   declarations: [
@@ -55,11 +73,14 @@ import { SearchComponent } from './search/search.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule, SocialLoginModule
 
 
   ],
   providers: [{
+    provide: AuthServiceConfig,
+    useFactory: getAuthServiceConfigs
+  }, {
     provide: HTTP_INTERCEPTORS, useClass: BasicAuthHtppInterceptorService, multi: true
   },
   {

@@ -13,6 +13,7 @@ import { AddproductGuardService } from './service/addproduct-guard.service';
 import { UserprofileComponent } from './components/userprofile/userprofile.component';
 import { AuthGaurdService } from './service/auth-guard.service';
 import { SearchComponent } from './search/search.component';
+import { HomeComponent } from './components/home/home.component';
 
 
 const routes: Routes = [

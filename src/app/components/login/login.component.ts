@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from '../../service/authentication.service';
 import { HttpClientService } from 'src/app/service/httpclient.service';
 import { CartItemCountService } from 'src/app/service/cart-item-count.service';
+import { GoogleLoginProvider, AuthService } from 'angular-6-social-login';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -16,13 +18,75 @@ export class LoginComponent implements OnInit {
   invalidLogin = false
 
 
-  constructor(private httpClientService: HttpClientService, private cartItemService: CartItemCountService, private router: Router,
+  constructor(private socialAuthService: AuthService, private httpClientService: HttpClientService, private cartItemService: CartItemCountService, private router: Router,
     private loginservice: AuthenticationService) { }
 
   ngOnInit() {
 
     if (localStorage.getItem("username"))
       this.router.navigate(['/home']);
+  }
+  public userPostData = {
+    email: '',
+    name: '',
+    provider: '',
+    provider_id: '',
+    provider_pic: '',
+    token: ''
+  };
+
+
+  public socialSignIn(socialPlatform: string) {
+    let socialPlatformProvider;
+    if (socialPlatform === 'google') {
+      socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+    }
+    this.socialAuthService.signIn(socialPlatformProvider).then(userData => {
+      //console.log(socialPlatform + ' sign in data : ', userData);
+      this.apiConnection(userData);
+    });
+
+
+
+  }
+  apiConnection(data) {
+    this.userPostData.email = data.email;
+    this.userPostData.name = data.name;
+    this.userPostData.provider = data.provider;
+    this.userPostData.provider_id = data.id;
+    this.userPostData.provider_pic = data.image;
+    this.userPostData.token = data.idToken;
+    this.httpClientService.socialLogIn(this.userPostData.token).subscribe(data => {
+
+      localStorage.setItem('username', this.userPostData.name)
+      localStorage.setItem('role', 'OTHERS')
+      localStorage.setItem('token', 'Bearer ' + data.body.token);
+
+      this.httpClientService.showCart().subscribe(
+        res => {
+          let count = 0;
+          this.cartItemService.clearCounter();
+          if (res.body.productsInCart) {
+            for (let product of res.body.productsInCart) {
+              count += product.quantity;
+            }
+          }
+
+          this.cartItemService.emitValue(count)
+
+
+        }
+      );
+
+
+
+      this.router.navigate(['/'])
+
+
+
+    });
+
+
   }
 
   checkLogin() {

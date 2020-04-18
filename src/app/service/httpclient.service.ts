@@ -32,6 +32,9 @@ export class HttpClientService {
   public addUser(user: any): Observable<any> {
     return this.apiService.post(ApplicationConstants.API_PATH.signup, user);
   }
+  public socialLogIn(token: any): Observable<any> {
+    return this.apiService.post(ApplicationConstants.API_PATH.sociallogin, token);
+  }
   public addProduct(product: any): Observable<any> {
 
     return this.apiService.post(ApplicationConstants.API_PATH.addproduct, product);
