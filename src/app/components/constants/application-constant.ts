@@ -1,4 +1,4 @@
-export class ApplicationConstants1 {
+export class ApplicationConstants {
     static readonly API_PATH = {
         login: 'https://cors-anywhere.herokuapp.com/http://34.70.194.228:8055/signin',
         sociallogin: 'https://cors-anywhere.herokuapp.com/http://localhost:8055/add-social-user',
@@ -24,7 +24,7 @@ export class ApplicationConstants1 {
     }
 }
 
-export class ApplicationConstants {
+export class ApplicationConstants1 {
     static readonly API_PATH = {
         login: 'http://localhost:8055/signin',
         sociallogin: 'http://localhost:8055/add-social-user',
