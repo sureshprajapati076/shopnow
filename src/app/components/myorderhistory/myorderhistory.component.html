@@ -30,7 +30,7 @@
                         <tr *ngFor="let product of order.productsOrdered">
                             <td>
                                 <span style="width: auto;  margin: 5px;">
-                                    <a [routerLink]="['/productdetails',product.productId]"><img width="40" height="40"
+                                    <a [routerLink]="['/productdetails',product.productId]"><img width="20" height="20"
                                             src="{{(product.imageUrl!='default.png')? product.imageUrl:'./assets/images/noimage.png'}}">
                                     </a>
 
