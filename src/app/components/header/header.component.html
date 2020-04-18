@@ -40,13 +40,27 @@
 
 
             <li class="nav-item active">
-                <div class="form-inline my-2 my-md-0">
-
-                    <div class="block"><input [(ngModel)]="searchWord" class="form-control" type="text"
+                <div class="col-auto">
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">Category</div>
+                        </div>
+                        <input [(ngModel)]="searchWord" class="form-control" type="text"
                             placeholder="{{placeHolderMsg}}">
-                        <button (click)="makeSearch()" class="form-control" type="submit">Go</button>
+                        <div style="width:50px; margin-left:2px;">
+                            <button (click)="makeSearch()" class="form-control" type="submit">Go</button>
+                        </div>
                     </div>
+
+
                 </div>
+
+
+
+
+
+
+
             </li>
 
         </ul>

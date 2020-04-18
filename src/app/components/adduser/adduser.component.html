@@ -1,53 +1,32 @@
-<div class="row">
-    <div class="col-md-8 offset-md-4">
-        <form [formGroup]="createAcc" (ngSubmit)="createAccount()">
-            <fieldset>
-                <legend>New Account Form</legend>
-                <div class="container" style="margin-top: 1em;">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="productNumber">Email</label>
-                                <input id="email" name="email" type="text" class="form-control" formControlName="email"
-                                    required>
-                            </div>
-                            <div class="form-group">
-                                <label for="name">Password</label>
-                                <input id="password" name="password" type="password" class="form-control"
-                                    formControlName="password" required="required">
-                            </div>
-                            <div class="form-group">
-                                <label for="unitPrice">Name</label>
-                                <input id="name" name="name" type="text" class="form-control" formControlName="name"
-                                    required="required">
-                            </div>
-                            <div class="form-group">
-                                <label for="address">Address</label>
-                                <input id="address" name="address" type="text" class="form-control"
-                                    formControlName="address" required="required">
-                                <span
-                                    *ngIf="!createAcc.get('address').valid && createAcc.get('address').value !='' ">error</span>
-                            </div>
-                            <!-- <div class="form-group">
-                                
-                                <select id="role" name="role" class="form-control" required="required" multiple
-                                    formControlName="roles">
-                                    <option value="ADMIN">ADMIN</option>
-                                    <option value="USER">USER</option>
-                                </select>
-                            </div> -->
-                            <div style="float:right;">
-                                <button id="btnReset" type="reset" class="btn btn-outline-info"
-                                    style="margin-right: 2em;">Reset</button>
-                                <a href="#" class="btn btn-outline-warning" style="margin-right: 2em;">Cancel</a>
-                                <button id="btnSubmit" [disabled]="!createAcc.valid" type="submit"
-                                    class="btn btn-outline-primary">Create
-                                    Account</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </fieldset>
-        </form>
-    </div>
+<div class="signup-form">
+    <form [formGroup]="createAcc" (ngSubmit)="createAccount()">
+        <h2>Register</h2>
+        <p class="hint-text">Create your account. It's free and only takes a minute.</p>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="text" class="form-control" formControlName="email" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" class="form-control" formControlName="password"
+                required="required">
+        </div>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" class="form-control" formControlName="name" required="required">
+        </div>
+        <div class="form-group">
+            <label for="address">Address</label>
+            <input id="address" name="address" type="text" class="form-control" formControlName="address"
+                required="required">
+            <span *ngIf="!createAcc.get('address').valid && createAcc.get('address').value !='' ">error</span>
+
+        </div>
+        <div class="form-group">
+            <button [disabled]="!createAcc.valid" type="submit" class="btn btn-success btn-lg btn-block">Register
+                Now</button>
+        </div>
+    </form>
+
 </div>

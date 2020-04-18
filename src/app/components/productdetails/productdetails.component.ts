@@ -40,6 +40,7 @@ export class ProductdetailsComponent implements OnInit {
       this.httpClientService.getUserDetails().subscribe(res => {
 
         this.isVerified = res.body.isVerified;
+
       });
     } else {
       this.isVerified = 'GUEST'
