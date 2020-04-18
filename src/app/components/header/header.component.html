@@ -73,7 +73,10 @@
         </li>
         <li>
             <span style="position:relative; display: inline-block;top:5px;">
-                <img width="30" height="30" src="./assets/images/noimage.png" alt="profile-pic" />
+                <img class="rounded-circle" *ngIf="profile_image" width="30" height="30" src="{{profile_image}}"
+                    alt="profile-pic" />
+                <img class="rounded-circle" *ngIf="!profile_image" width="30" height="30"
+                    src="./assets/images/noimage.png" alt="profile-pic" />
             </span>
         </li>
         <li class="nav-item dropdown">

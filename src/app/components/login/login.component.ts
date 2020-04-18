@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
     private loginservice: AuthenticationService) { }
 
   ngOnInit() {
+    this.clearLoginScreen = false
 
     if (localStorage.getItem("username"))
       this.router.navigate(['/home']);
@@ -49,7 +50,10 @@ export class LoginComponent implements OnInit {
 
 
   }
+  clearLoginScreen;
   apiConnection(data) {
+
+    this.clearLoginScreen = true;
     this.userPostData.email = data.email;
     this.userPostData.name = data.name;
     this.userPostData.provider = data.provider;
@@ -61,6 +65,8 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('username', this.userPostData.name)
       localStorage.setItem('role', 'OTHERS')
       localStorage.setItem('token', 'Bearer ' + data.body.token);
+      localStorage.setItem('image', this.userPostData.provider_pic)
+      this.cartItemService.emitProfilePic(this.userPostData.provider_pic);
 
       this.httpClientService.showCart().subscribe(
         res => {

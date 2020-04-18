@@ -17,10 +17,13 @@ export class HeaderComponent implements OnInit {
 
   cartItemCount;
 
+  profile_image;
 
   constructor(private authService: AuthenticationService, private httpClientService: HttpClientService, private cartItemCounterService: CartItemCountService, public router: Router, public loginService: AuthenticationService, private httpClient: HttpClientService) { }
   ngOnInit() {
+    this.profile_image = localStorage.getItem('image')
     this.cartItemCounterService.emitter.subscribe(data => this.cartItemCount = data);
+    this.cartItemCounterService.profilePicEmitter.subscribe(data => this.profile_image = data);
 
     if (this.authService.isUserLoggedIn()) {
 
@@ -49,6 +52,7 @@ export class HeaderComponent implements OnInit {
   logOut() {
 
     localStorage.clear();
+    this.cartItemCounterService.emitProfilePic(undefined);
     this.router.navigate(['login'])
   }
   placeHolderMsg = 'Search...'

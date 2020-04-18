@@ -9,6 +9,7 @@ import { AuthenticationService } from './authentication.service';
 export class CartItemCountService {
 
   emitter = new EventEmitter<number>();
+  profilePicEmitter = new EventEmitter<String>();
   count: number;
   constructor(private authService: AuthenticationService, private httpClientService: HttpClientService) {
 
@@ -23,5 +24,9 @@ export class CartItemCountService {
   clearCounter() {
     this.count = 0;
     this.emitValue(0);
+  }
+  emitProfilePic(value: String) {
+    this.profilePicEmitter.emit(value)
+
   }
 }
