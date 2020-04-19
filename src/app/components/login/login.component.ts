@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { AuthenticationService } from '../../service/authentication.service';
 import { HttpClientService } from 'src/app/service/httpclient.service';
 import { CartItemCountService } from 'src/app/service/cart-item-count.service';
 import { GoogleLoginProvider, AuthService } from 'angular-6-social-login';
 import { HttpClient } from '@angular/common/http';
-
+import { filter } from 'rxjs/operators';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -17,9 +18,19 @@ export class LoginComponent implements OnInit {
   password = ''
   invalidLogin = false
 
+  previousUrl: string;
 
-  constructor(private socialAuthService: AuthService, private httpClientService: HttpClientService, private cartItemService: CartItemCountService, private router: Router,
-    private loginservice: AuthenticationService) { }
+
+
+
+
+  constructor(private location: Location, private socialAuthService: AuthService, private httpClientService: HttpClientService, private cartItemService: CartItemCountService, private router: Router,
+    private loginservice: AuthenticationService) {
+
+
+
+
+  }
 
   ngOnInit() {
     this.clearLoginScreen = false
@@ -84,9 +95,14 @@ export class LoginComponent implements OnInit {
         }
       );
 
+      if (window.history.length > 1) {
+        this.location.back()
+      } else {
 
+        this.router.navigate(['/'])
+      }
 
-      this.router.navigate(['/'])
+      // this.router.navigate(['/'])
 
 
 
@@ -98,8 +114,8 @@ export class LoginComponent implements OnInit {
   checkLogin() {
     this.loginservice.authenticate(this.username, this.password).subscribe(
       data => {
-        //console.log(JSON.stringify(data));
-        this.router.navigate(['/home'])
+
+
         this.invalidLogin = false
 
         this.httpClientService.showCart().subscribe(
@@ -117,6 +133,12 @@ export class LoginComponent implements OnInit {
 
           }
         );
+        if (window.history.length > 1) {
+          this.location.back()
+        } else {
+
+          this.router.navigate(['/'])
+        }
 
 
 
