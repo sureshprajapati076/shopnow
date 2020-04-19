@@ -30,21 +30,25 @@
                     <i class="fa fa-lock" aria-hidden="true"></i>
                 </span>
             </div>
-            <div style="left:30px;" class="wrap-input100 validate-input">
-                <div class="custom-control custom-checkbox mr-sm-2">
+            <div class="wrap-input100 validate-input">
+                <div style="left:30px;" class="custom-control custom-checkbox mr-sm-2">
                     <input type="checkbox" (change)="rememberedName=true" class="custom-control-input"
                         id="customControlAutosizing">
                     <label class="custom-control-label" for="customControlAutosizing">Remember me</label>
+                </div>
+
+
+
+                <div class="container-login100-form-btn">
+                    <button (click)=checkLogin() class="login100-form-btn">
+                        Login
+                    </button>
                 </div>
             </div>
 
 
 
-            <div class="container-login100-form-btn">
-                <button (click)=checkLogin() class="login100-form-btn">
-                    Login
-                </button>
-            </div>
+
             <div class="text-center">
                 <br />
                 <span style="color:white">OR</span>
