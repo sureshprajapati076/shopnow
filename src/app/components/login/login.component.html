@@ -11,7 +11,8 @@
             <span class="login100-form-title">
                 Login Form
             </span>
-
+            <div *ngIf="invalidLogin" style="color:crimson; text-align: center;">Invalid Credentials</div>
+            <br />
             <div class="wrap-input100 validate-input">
                 <input type="text" name="username" [(ngModel)]="username" class="input100" type="text"
                     placeholder="Email">
@@ -29,8 +30,15 @@
                     <i class="fa fa-lock" aria-hidden="true"></i>
                 </span>
             </div>
+            <div style="left:30px;" class="wrap-input100 validate-input">
+                <div class="custom-control custom-checkbox mr-sm-2">
+                    <input type="checkbox" (change)="rememberedName=true" class="custom-control-input"
+                        id="customControlAutosizing">
+                    <label class="custom-control-label" for="customControlAutosizing">Remember me</label>
+                </div>
+            </div>
 
-            <div *ngIf="invalidLogin" style="color:crimson; text-align: center;">Invalid Credentials</div>
+
 
             <div class="container-login100-form-btn">
                 <button (click)=checkLogin() class="login100-form-btn">

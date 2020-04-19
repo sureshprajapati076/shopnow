@@ -31,8 +31,10 @@ export class LoginComponent implements OnInit {
 
 
   }
-
+  rememberedName: Boolean
   ngOnInit() {
+    this.rememberedName = false;
+    this.username = localStorage.getItem('rememberedName')
     this.clearLoginScreen = false
 
     if (localStorage.getItem("username"))
@@ -112,6 +114,12 @@ export class LoginComponent implements OnInit {
   }
 
   checkLogin() {
+
+    if (this.rememberedName == true) {
+      localStorage.setItem('rememberedName', this.username);
+    }
+
+
     this.loginservice.authenticate(this.username, this.password).subscribe(
       data => {
 

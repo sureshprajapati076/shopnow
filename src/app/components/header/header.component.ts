@@ -50,8 +50,10 @@ export class HeaderComponent implements OnInit {
 
   }
   logOut() {
-
+    let rememberedName = localStorage.getItem('rememberedName');
     localStorage.clear();
+    if (rememberedName)
+      localStorage.setItem('rememberedName', rememberedName);
     this.cartItemCounterService.emitProfilePic(undefined);
     this.router.navigate(['login'])
   }
