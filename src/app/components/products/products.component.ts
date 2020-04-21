@@ -9,10 +9,18 @@ import { AuthenticationService } from 'src/app/service/authentication.service';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
+
+
+
+
+
+
+
+
   config: any;
   currentPage
   addedtocart = false
-  list
+  list: Array<any>
   constructor(public authService: AuthenticationService, private route: ActivatedRoute, private router: Router, private httpClientService: HttpClientService, private cachedService: CacheForProductListService) {
     this.config = {
       currentPage: 1,
@@ -33,12 +41,18 @@ export class ProductsComponent implements OnInit {
     this.addedtocart = false
     this.getProducts();
 
+
   }
   public getProducts() {
     this.cachedService.getProducts(this.currentPage).subscribe(
       data => {
 
         this.list = data.body.content
+        this.list = this.list.map((a) => ({ sort: Math.random(), value: a }))
+          .sort((a, b) => a.sort - b.sort)
+          .map((a) => a.value);
+
+
         this.last = data.body.last
         this.config.currentPage = 1;
       }, exception => {

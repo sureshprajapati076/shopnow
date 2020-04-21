@@ -5,17 +5,23 @@
 
 
 <div class="container" *ngIf="list">
-    <div class="item" *ngFor="let product of list | paginate: config; let i=index;">
+    <!-- <div class="item" *ngFor="let product of list | paginate: config; let i=index;"> -->
+    <div class="item" *ngFor="let product of list ">
         <app-productinfo [product]="product"></app-productinfo>
     </div>
 
-    <button style="width: 100px; height: 40px;" *ngIf="currentPage>1"
-        (click)="currentPage=currentPage-1;getProducts()">Back</button>
-    <div class="text-center" style="width:78%;">
-        <hr />
-        <pagination-controls (pageChange)="pageChange($event)" class="my-pagination"></pagination-controls>
-    </div>
-    <button style="width: 100px; height: 40px;" *ngIf="!last" (click)="currentPage=currentPage+1;getProducts()">
-        More</button>
 
+    <!-- <pagination-controls (pageChange)="pageChange($event)" class="my-pagination"></pagination-controls> -->
+
+
+
+
+    <div class="text-center" style="width:78%;">
+
+        <hr />
+        <button style="width: 100px; height: 40px;" *ngIf="currentPage>1"
+            (click)="currentPage=currentPage-1;getProducts()">Back</button>&nbsp;&nbsp;&nbsp;
+        <button style="width: 100px; height: 40px;" *ngIf="!last" (click)="currentPage=currentPage+1;getProducts()">
+            Next</button>
+    </div>
 </div>
