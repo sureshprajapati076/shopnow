@@ -1,44 +1,7 @@
-<!-- <header>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <div><a routerLink="/" class="navbar-brand">e-shopping</a></div>
-
-        <ul class="navbar-nav" style="cursor: pointer;">
-            <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="/login" class="nav-link">Login</a></li>
-
-            <li *ngIf="loginService.isUserLoggedIn()" (click)="logOut()" class="nav-link">LogOut</li>
-            <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="/signup" class="nav-link">Sign Up</a></li>
-            <li class="nav-link"><span>Welcome </span><a style="text-decoration: none;"
-                    [routerLink]="['/user-profile']">
-                    {{loginService.getUserName()}}</a>
-            </li>
-            <li class="nav-link"><a [routerLink]="['/cart']">Cart</a></li>
-
-            <li class="nav-link"><a [routerLink]="['/wishlist']">Wish List</a></li>
-            <li class="nav-link"><a [routerLink]="['/order-history']">Order History</a></li>
-
-
-
-
-
-
-        </ul>
-
-
-
-
-
-    </nav>
-
-</header> -->
-
-
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <a routerLink="/" class="navbar-brand">e-shopping</a>
-
     <div class="collapse navbar-collapse" id="navbarsExample04">
         <ul class="navbar-nav mr-auto">
-
-
             <li class="nav-item active">
                 <div class="col-auto">
                     <div class="input-group mb-2">
@@ -47,32 +10,14 @@
                         </div>
                         <input [(ngModel)]="searchWord" class="form-control" type="text"
                             placeholder="{{placeHolderMsg}}">
-                        <div style="width:50px; margin-left:2px;">
+                        <div>
                             <button (click)="makeSearch()" class="form-control" type="submit">Go</button>
                         </div>
                     </div>
-
-
                 </div>
-
-
-
-
-
-
-
             </li>
-
         </ul>
-
-
-
-        <!-- <form class="form-inline my-2 my-md-0">
-            <input class="form-control" type="text" placeholder="Search">
-        </form> -->
     </div>
-
-
     <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
             <a class="nav-link" *ngIf="!loginService.isUserLoggedIn()" routerLink="/login">Login <span
@@ -83,7 +28,6 @@
         </li>
         <li class="nav-item">
             <a class="nav-link disabled" href="#">Prime Members Only</a>
-
         </li>
         <li>
             <span style="position:relative; display: inline-block;top:5px;">
@@ -94,7 +38,6 @@
             </span>
         </li>
         <li class="nav-item dropdown">
-
             <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">Welcome {{loginService.getUserName()}}</a>
             <div class="dropdown-menu" aria-labelledby="dropdown04">
@@ -103,24 +46,17 @@
                 <a class="dropdown-item" [routerLink]="['/order-history']">View Order History</a>
                 <a *ngIf="loginService.isUserLoggedIn()" (click)="logOut()" class="dropdown-item" href="#">Logout
                 </a>
-
             </div>
         </li>
         <li class="nav-item">
             <a class="nav-link" [routerLink]="['/cart']"><i style="font-size:1.5em;" class="fa fa-shopping-cart"
                     aria-hidden="true"></i>
                 <span *ngIf="cartItemCount>0" class='badge' id='lblCartCount'> {{cartItemCount}} </span>
-
             </a>
         </li>
-
     </ul>
-
-
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04"
         aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-
-
 </nav>
