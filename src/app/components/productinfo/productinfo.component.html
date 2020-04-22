@@ -1,22 +1,23 @@
-<div class="row product-list">
-    <section class="panel">
-        <div class="pro-img-box">
-            <a [routerLink]="['/productdetails', product.id]">
-                <img src="{{(product.imageUrl!='default.png' && !addedtocart)? product.imageUrl:(!addedtocart)?'./assets/images/noimage.png':'./assets/images/added.gif'}}"
-                    alt="">
+<div>
+    <a [routerLink]="['/productdetails', product.id]">
+        <img style="width:200px;height:200px; display: block;
+        margin-left: auto;
+        margin-right: auto;"
+            src="{{(product.imageUrl!='default.png' && !addedtocart)? product.imageUrl:(!addedtocart)?'./assets/images/noimage.png':'./assets/images/added.gif'}}"
+            alt="">
 
-            </a>
-            <span class="adtocart" (click)="addToCart(product.id,product.imageUrl,product.name,product.unitPrice,1)">
-                <i class="fa fa-shopping-cart"></i>
-            </span>
+    </a>
+    <div class="text-center">
+        <div class="adtocart" (click)="addToCart(product.id,product.imageUrl,product.name,product.unitPrice,1)"><i
+                class="fa fa-shopping-cart"></i></div>
+    </div>
 
-        </div>
-        <div class="panel-body text-center">
-            <h4>
-                <span class="pro-title">
-                    {{product.name}}</span>
-            </h4>
-            <p class="price">$ {{product.unitPrice |number : '.2-2'}}</p>
-        </div>
-    </section>
+
+    <div class="panel-body text-center">
+        <h4>
+            <span class="pro-title">
+                {{product.name}}</span>
+        </h4>
+        <p>$ {{product.unitPrice |number : '.2-2'}}</p>
+    </div>
 </div>

@@ -2,26 +2,28 @@
     <a *ngIf="authService.isAdmin()" routerLink="/addproduct" class="nav-link">Add Product / Vendor</a>
 </h3>
 
+<!-- Stack the columns on mobile by making one full-width and the other half-width -->
+
+<div class="container">
+    <div class="row" *ngIf="list">
+        <!-- <div class="item" *ngFor="let product of list | paginate: config; let i=index;"> -->
+        <div class="col-12 col-sm-6 col-md-4" *ngFor="let product of list ">
+            <app-productinfo [product]="product"></app-productinfo>
+        </div>
 
 
-<div class="container" *ngIf="list">
-    <!-- <div class="item" *ngFor="let product of list | paginate: config; let i=index;"> -->
-    <div class="item" *ngFor="let product of list ">
-        <app-productinfo [product]="product"></app-productinfo>
-    </div>
-
-
-    <!-- <pagination-controls (pageChange)="pageChange($event)" class="my-pagination"></pagination-controls> -->
+        <!-- <pagination-controls (pageChange)="pageChange($event)" class="my-pagination"></pagination-controls> -->
 
 
 
 
-    <div class="text-center" style="width:78%;">
+        <div class="text-center" style="width:100%;">
 
-        <hr />
-        <button style="width: 100px; height: 40px;" *ngIf="currentPage>1"
-            (click)="currentPage=currentPage-1;getProducts()">Back</button>&nbsp;&nbsp;&nbsp;
-        <button style="width: 100px; height: 40px;" *ngIf="!last" (click)="currentPage=currentPage+1;getProducts()">
-            Next</button>
+            <hr />
+            <button style="width: 100px; height: 40px;" *ngIf="currentPage>1"
+                (click)="currentPage=currentPage-1;getProducts()">Back</button>&nbsp;&nbsp;&nbsp;
+            <button style="width: 100px; height: 40px;" *ngIf="!last" (click)="currentPage=currentPage+1;getProducts()">
+                Next</button>
+        </div>
     </div>
 </div>
