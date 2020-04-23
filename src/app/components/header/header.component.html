@@ -49,7 +49,7 @@
             </div>
         </li>
         <li class="nav-item">
-            <div [ngStyle]="{'width': cartItemCount<10 ? '65px' : (cartItemCount<100 ? '72px' : '80px') }">
+            <div [ngStyle]="{'width': cartItemCount<10 ? '65px' : (cartItemCount<100 ? '75px' : '80px') }">
                 <a class="nav-link" [routerLink]="['/cart']"><i style="font-size:1.5em;" class="fa fa-shopping-cart"
                         aria-hidden="true"></i>
                     <span *ngIf="cartItemCount>0" class='badge' id='lblCartCount'> {{cartItemCount}} </span>
