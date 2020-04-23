@@ -73,10 +73,7 @@ export class AuthenticationService {
     return localStorage.getItem('role') === 'ADMIN'
   }
 
-  logOut() {
-    localStorage.removeItem('username')
-    // localStorage.setItem('username', 'Guest')
-  }
+
   getUserName() {
     if (localStorage.getItem('username'))
       return localStorage.getItem('username')

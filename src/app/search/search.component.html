@@ -1,8 +1,27 @@
-<div class="container" *ngIf="list">
-    <div class="item" *ngFor="let product of list ">
-        <app-productinfo [product]="product"></app-productinfo>
+<div class="container">
+    <div class="row" *ngIf="list">
+        <!-- <div class="item" *ngFor="let product of list | paginate: config; let i=index;"> -->
+        <div class="col-6 col-sm-4" *ngFor="let product of list | paginate: config; ">
+            <app-productinfo [product]="product"></app-productinfo>
+        </div>
     </div>
 
-    <div *ngIf="list.length==0">
-        <h1> No search results Found</h1>
+</div>
+<div class="container">
+
+    <div class="row">
+        <div class="col-xs-6 col-sm-2 col-lg-3"></div>
+        <div class="col-xs-6 col-sm-10 col-lg-9">
+            <pagination-controls (pageChange)=" pageChange($event)" class="my-pagination">
+            </pagination-controls>
+        </div>
     </div>
+
+
+
+    <!-- <div class="col-4 col-sm-2">hero</div>
+    <div class="col-8 col-sm-10">Hero -->
+    <!-- <pagination-controls (pageChange)=" pageChange($event)" class="my-pagination">
+        </pagination-controls> -->
+    <!-- </div> -->
+</div>

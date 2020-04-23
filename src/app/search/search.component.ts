@@ -10,10 +10,20 @@ import { HttpClientService } from '../service/httpclient.service';
 export class SearchComponent implements OnInit {
 
   constructor(private httpClientService: HttpClientService, private route: ActivatedRoute, private router: Router) {
-
+    this.config = {
+      currentPage: 1,
+      itemsPerPage: 6,
+      totalItems: 0
+    };
+    route.queryParams.subscribe(
+      params => this.config.currentPage = params['page'] ? params['page'] : 1);
   }
   wordSearch
   list
+  config: any;
+  pageChange(newPage: number) {
+    this.router.navigate(['search', this.wordSearch], { queryParams: { page: newPage } });
+  }
   ngOnInit() {
 
     this.route.params.subscribe(params => {
@@ -28,6 +38,7 @@ export class SearchComponent implements OnInit {
     this.httpClientService.search(this.wordSearch).subscribe(
       res => {
         this.list = res.body
+        this.config.currentPage = 1;
       }
     );
 

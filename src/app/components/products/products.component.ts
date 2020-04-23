@@ -15,20 +15,11 @@ export class ProductsComponent implements OnInit {
 
 
 
-
-
-  config: any;
   currentPage
   addedtocart = false
   list: Array<any>
   constructor(public authService: AuthenticationService, private route: ActivatedRoute, private router: Router, private httpClientService: HttpClientService, private cachedService: CacheForProductListService) {
-    this.config = {
-      currentPage: 1,
-      itemsPerPage: 6,
-      totalItems: 0
-    };
-    route.queryParams.subscribe(
-      params => this.config.currentPage = params['page'] ? params['page'] : 1);
+
   }
   pageChange(newPage: number) {
     this.router.navigate([''], { queryParams: { page: newPage } });
@@ -54,7 +45,7 @@ export class ProductsComponent implements OnInit {
 
 
         this.last = data.body.last
-        this.config.currentPage = 1;
+
       }, exception => {
         if (exception.status != 200) {
           this.router.navigate(['/error-page']);
