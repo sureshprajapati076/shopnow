@@ -1,10 +1,9 @@
-<h3>
-    <a *ngIf="authService.isAdmin()" routerLink="/addproduct" class="nav-link">Add Product / Vendor</a>
-</h3>
-
 <!-- Stack the columns on mobile by making one full-width and the other half-width -->
 
 <div class="container">
+    <h3>
+        <a *ngIf="authService.isAdmin()" routerLink="/addproduct" class="nav-link">Add Product / Vendor</a>
+    </h3>
     <div class="row" *ngIf="list">
         <!-- <div class="item" *ngFor="let product of list | paginate: config; let i=index;"> -->
         <div class="col-6 col-sm-4" *ngFor="let product of list ">
