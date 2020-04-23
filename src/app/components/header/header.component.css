@@ -1,14 +1,28 @@
 input[type=text] {
-    width: 450px;
-    padding: 6px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    resize: vertical;
-  }
-
-  @media screen and (max-width: 1024px) {
-    input[type=text] {
-      width: 180px;
-      margin-top: 0;
-    }
+  width: 450px;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
 }
+
+@media screen and (max-width: 1024px) {
+  input[type=text] {
+    width: 180px;
+    margin-top: 0;
+  }
+}
+.badge {
+  position: relative;
+  top:-10px;
+  left:-10px;
+  background-color: red;
+  color:white;
+padding-left: 9px;
+padding-right: 9px;
+-webkit-border-radius: 9px;
+-moz-border-radius: 9px;
+border-radius: 9px;
+}
+
+

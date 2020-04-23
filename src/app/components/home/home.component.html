@@ -2,6 +2,10 @@
     &nbsp;
 </div>
 <div class="container">
+    <div>
+        <a style="text-decoration: none; font-size: 1.5em; " [routerLink]="['/products']"> View All Products</a>
+    </div>
+    <p></p>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -57,6 +61,8 @@
         <li>Angular 8 with Bootstrap 4</li>
         <li>Login with google feature Oath2.</li>
         <li>Implemented Http Interceptors, custom pipes, Guard.</li>
+        <li>Implemented component to component communication using service. (cart subscribes to items in cart)</li>
+        <li>Used debounce time so that we hit server only once when user clicks multiple times in cart items + icon</li>
         <li>Get method cached on client side using service for perfomance.</li>
     </ul>
 </div>
