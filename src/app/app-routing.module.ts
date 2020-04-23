@@ -19,7 +19,7 @@ import { HomeComponent } from './components/home/home.component';
 const routes: Routes = [
   { path: '', component: ProductsComponent },
   { path: 'products', component: ProductsComponent },
-  { path: 'home', component: ProductsComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'search/:searchWord', component: SearchComponent },
   { path: 'error-page', component: ErrorPageComponent },
   { path: 'login', component: LoginComponent },
