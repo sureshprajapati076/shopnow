@@ -12,7 +12,7 @@ export class ProductsComponent implements OnInit {
   currentPage
   addedtocart = false
   list: Array<any>
-  constructor(public authService: AuthenticationService, private route: ActivatedRoute, private router: Router, private httpClientService: HttpClientService, private cachedService: CacheForProductListService) {
+  constructor(public authService: AuthenticationService, private route: ActivatedRoute, private router: Router, private httpClientService: HttpClientService, public cachedService: CacheForProductListService) {
   }
   pageChange(newPage: number) {
     this.router.navigate([''], { queryParams: { page: newPage } });
@@ -20,17 +20,16 @@ export class ProductsComponent implements OnInit {
   last;
   randomize: Array<number>
   ngOnInit() {
-    this.randomize = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
-    this.randomize = this.randomize.map((a) => ({ sort: Math.random(), value: a }))
-      .sort((a, b) => a.sort - b.sort)
-      .map((a) => a.value);
-    this.currentPage = 1;
+
+    this.randomize = this.cachedService.getRandomArray();
+
+    // this.currentPage = this.cachedService.getCurrentPage();
     this.last = false;
     this.addedtocart = false
     this.getProducts();
   }
   public getProducts() {
-    this.cachedService.getProducts(this.currentPage).subscribe(
+    this.cachedService.getProducts(this.cachedService.currentPage).subscribe(
       data => {
         this.list = data.body.content
         let arr = [];

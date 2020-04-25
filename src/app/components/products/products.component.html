@@ -19,9 +19,10 @@
         <div class="text-center" style="width:100%;">
 
             <hr />
-            <button style="width: 100px; height: 40px;" *ngIf="currentPage>1"
-                (click)="currentPage=currentPage-1;getProducts()">Back</button>&nbsp;&nbsp;&nbsp;
-            <button style="width: 100px; height: 40px;" *ngIf="!last" (click)="currentPage=currentPage+1;getProducts()">
+            <button style="width: 100px; height: 40px;" *ngIf="cachedService.currentPage>1"
+                (click)="cachedService.decPageNumber();getProducts()">Back</button>&nbsp;&nbsp;&nbsp;
+            <button style="width: 100px; height: 40px;" *ngIf="!last"
+                (click)="cachedService.incPageNumber();getProducts()">
                 Next</button>
         </div>
     </div>
