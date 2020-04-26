@@ -1,4 +1,4 @@
-<div class="container">
+<div *ngIf="order" class="container">
     <table class="table">
         <th>Your Order has been Placed</th>
         <tr>
@@ -30,7 +30,9 @@
         </tr>
 
     </table>
+
     <p>
-        Keep Shopping.... (Please do not refresh page. Check your order history)
+        <a style="text-decoration: none; color: chocolate;" [routerLink]="['/products']">Keep Shopping</a> (Please do
+        not refresh page. Check your order history)
     </p>
 </div>

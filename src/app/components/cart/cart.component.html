@@ -107,8 +107,13 @@
 </ng-template>
 
 
-<div *ngIf="showSpinner === true" style="position: fixed; left:42%; top:40%;">
-    <div style="width:200px; height:200px;" class="spinner-border" role="status">
+<div *ngIf="showSpinner === true" style="position: fixed;
+left: 50%;
+top: 50%;
+transform: translate(-50%, -50%);
+z-index: 9999;
+">
+    <div style="width: 200px; height: 200px;" class="spinner-border" role="status">
         <span class="sr-only">Loading...</span>
     </div>
 </div>

@@ -61,7 +61,7 @@ export class CartComponent implements OnInit {
             this.makepayment(order);
           });
           this.paidFor = true;
-          console.log(order)
+
         },
         onError: err => {
           console.log(err)
