@@ -1,14 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { HttpClientService } from '../../service/httpclient.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CacheForProductListService } from 'src/app/service/cache-for-product-list.service';
 import { AuthenticationService } from 'src/app/service/authentication.service';
+
+
+
+declare var paypal;
+
+
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
+
+
+
+
   currentPage
   addedtocart = false
   list: Array<any>
@@ -20,6 +30,16 @@ export class ProductsComponent implements OnInit {
   last;
   randomize: Array<number>
   ngOnInit() {
+
+
+
+
+
+
+
+
+
+
 
     this.randomize = this.cachedService.getRandomArray();
 

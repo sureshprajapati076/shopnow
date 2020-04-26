@@ -1,0 +1,36 @@
+<div class="container">
+    <table class="table">
+        <th>Your Order has been Placed</th>
+        <tr>
+            <td>We've received ${{order.purchase_units[0].amount.value}}</td>
+        </tr>
+        <tr>
+            <td> Your transaction id: <span style="color:green">{{order.id}}</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h5>Shipping Details:</h5>
+            </td>
+        </tr>
+        <tr>
+            <td> {{order.purchase_units[0].shipping.name.full_name}}</td>
+        </tr>
+        <tr>
+            <td>
+                {{order.purchase_units[0].shipping.address.address_line_1}}<br />
+                {{order.purchase_units[0].shipping.address.admin_area_2}}<br />
+                {{order.purchase_units[0].shipping.address.admin_area_1}},
+                {{order.purchase_units[0].shipping.address.postal_code}}
+
+
+
+
+            </td>
+        </tr>
+
+    </table>
+    <p>
+        Keep Shopping.... (Please do not refresh page. Check your order history)
+    </p>
+</div>

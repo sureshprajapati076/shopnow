@@ -1,4 +1,6 @@
-<div style="width: 90%; margin: 0 auto;">
+<!-- <div style="width: 90%; margin: 0 auto; filter: blur(8px);"> -->
+
+<div class="container" [ngClass]="{'blur-out': showSpinner}">
     <h2>Your Cart: </h2>
 
     <div *ngIf="cart">
@@ -57,10 +59,35 @@
         </table>
 
         <button [hidden]="totalCost == 0" class="btn btn-outline-warning" style="margin-right: 2em;"
-            style="cursor: pointer;" (click)="makepayment()">Check Out</button>
+            style="cursor: pointer;" (click)="makepayment(null)">Check Out</button>
+
 
     </div>
+
+
+
+    <div [hidden]="totalCost == 0" class="row">
+        <div class="col-sm-6">
+            <h5>Instruction to make payment </h5>
+            <h5>Click Above Check Out button for easy check out for demo purpose </h5>
+            <p style="color:red;">(Amount Greater than $10 will automatically be converted to $5 for payment
+                amount in paypal for demo purpose only)</p>
+            <p>Click on <img height="30" width="150" src="../assets/images/paypal-button.png"> on right side if you want
+                to try paypal account</p>
+
+        </div>
+        <div class="col-sm-6">
+            <div class="pull-right" #paypal></div>
+        </div>
+    </div>
+
+
 </div>
+
+
+
+
+
 <ng-template #other_content>
 
     <table class="table">
@@ -78,3 +105,10 @@
         </tr>
     </table>
 </ng-template>
+
+
+<div *ngIf="showSpinner === true" style="position: fixed; left:42%; top:40%;">
+    <div style="width:200px; height:200px;" class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>

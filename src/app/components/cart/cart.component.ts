@@ -1,21 +1,79 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { HttpClientService } from '../../service/httpclient.service';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { CartItemCountService } from 'src/app/service/cart-item-count.service';
+declare var paypal;
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  constructor(private cartItemService: CartItemCountService, private router: Router, private httpClientService: HttpClientService) { }
+
+  showSpinner: boolean
+
+
+  @ViewChild('paypal', { static: true }) paypalElement: ElementRef;
+  productToSell = {
+    price: 45.30,
+    description: 'good',
+    img: 'somewhere'
+  };
+  paidFor = false;
+
+
+
+  constructor(private _ngZone: NgZone, private cartItemService: CartItemCountService, private router: Router, private httpClientService: HttpClientService) { }
   visibleRowIndex = [];
   cart;
   totalCost;
   subject: Subject<any> = new Subject();
   ngOnInit() {
+    this.showSpinner = false;
+
+    paypal
+      .Buttons({
+        createOrder: (data, actions) => {
+          return actions.order.create({
+            purchase_units: [
+              {
+                amount: {
+                  currency_code: 'USD',
+                  value: this.totalCost > 10 ? 5 : this.totalCost
+                }
+              }
+            ]
+          });
+
+        },
+        onApprove: async (data, actions) => {
+          this.showSpinner = true;
+
+          const order = await actions.order.capture();
+
+
+          this._ngZone.run(() => {
+
+
+
+            this.makepayment(order);
+          });
+          this.paidFor = true;
+          console.log(order)
+        },
+        onError: err => {
+          console.log(err)
+        },
+
+      })
+      .render(this.paypalElement.nativeElement);
+
+
+
+
+
     this.itemcounttoadd = 0
     this.subject
       .pipe(debounceTime(500))
@@ -73,12 +131,15 @@ export class CartComponent implements OnInit {
       }
     );
   }
-  public makepayment() {
+  public makepayment(order) {
     this.httpClientService.makePayment().subscribe(data => {
       if (data.status == 200) {
+
+        this.cartItemService.setOrder(order);
+        this.showSpinner = false;
         this.cartItemService.clearCounter();
 
-        this.router.navigate(['/'])
+        this.router.navigate(['order-placed'])
       } else {
         this.router.navigate(['/error-page'])
       }

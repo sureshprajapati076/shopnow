@@ -14,6 +14,7 @@ import { UserprofileComponent } from './components/userprofile/userprofile.compo
 import { AuthGaurdService } from './service/auth-guard.service';
 import { SearchComponent } from './search/search.component';
 import { HomeComponent } from './components/home/home.component';
+import { OrderplaceComponent } from './components/orderplace/orderplace.component';
 
 
 const routes: Routes = [
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'wishlist', component: WishlistComponent, canActivate: [AuthGaurdService] },
   { path: 'order-history', component: MyorderhistoryComponent, canActivate: [AuthGaurdService] },
   { path: 'productdetails/:productId', component: ProductdetailsComponent },
+  { path: 'order-placed', component: OrderplaceComponent },
   {
     path: 'addproduct', component: AddproductComponent, canActivate: [AuthGaurdService, AddproductGuardService]
   },

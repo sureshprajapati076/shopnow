@@ -8,6 +8,9 @@ import { AuthenticationService } from './authentication.service';
 })
 export class CartItemCountService {
 
+
+  order: any
+
   emitter = new EventEmitter<number>();
   profilePicEmitter = new EventEmitter<String>();
   count: number;
@@ -16,6 +19,18 @@ export class CartItemCountService {
     this.count = 0
 
   }
+
+
+  setOrder(ord) {
+    this.order = ord;
+  }
+  getOrder() {
+    return this.order;
+  }
+  clearOrder() {
+    this.order = null;
+  }
+
 
   emitValue(value: number) {
     this.count += value;

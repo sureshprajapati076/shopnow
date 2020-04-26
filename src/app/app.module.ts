@@ -31,6 +31,7 @@ import {
   GoogleLoginProvider
 
 } from 'angular-6-social-login';
+import { OrderplaceComponent } from './components/orderplace/orderplace.component';
 
 export function getAuthServiceConfigs() {
   const config = new AuthServiceConfig(
@@ -65,6 +66,7 @@ export function getAuthServiceConfigs() {
     DateAgoPipe,
     TruncatePipe,
     SearchComponent,
+    OrderplaceComponent,
 
   ],
   imports: [

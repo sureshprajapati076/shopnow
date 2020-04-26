@@ -7,3 +7,6 @@
     font-size: 12px;
     line-height: 1.42857;
 }
+.blur-out{
+    filter: blur(8px);
+}
