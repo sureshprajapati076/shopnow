@@ -25,6 +25,9 @@ import { ErrorInterceptorService } from './service/error-interceptor.service';
 import { TruncatePipe } from './pipe/truncate.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SearchComponent } from './search/search.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import {
   SocialLoginModule,
   AuthServiceConfig,
@@ -75,7 +78,8 @@ export function getAuthServiceConfigs() {
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxPaginationModule, SocialLoginModule
+    NgxPaginationModule, SocialLoginModule, BrowserAnimationsModule,
+    ToastrModule.forRoot()
 
 
   ],

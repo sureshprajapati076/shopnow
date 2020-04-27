@@ -78,15 +78,18 @@ export class ProductdetailsComponent implements OnInit {
 
   public sendCode() {
 
+    this.buttonDisabled = true
     this.httpClientService.sendVerificationCode().subscribe(res => {
       alert('Code Sent to your email')
-      this.codeSent = 1
+      this.codeSent = true
+      this.buttonDisabled = false
     });
 
   }
   verificationCode;
   invalidcodemessage
-  codeSent
+  codeSent = false;
+  buttonDisabled = false;
   public verify() {
     this.httpClientService.veryfyCode(this.verificationCode).subscribe(res => {
 

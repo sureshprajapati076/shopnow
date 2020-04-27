@@ -45,12 +45,14 @@
 
                                 </div>
                                 <ng-template #showmsgtoverify>
-                                    <p class="alert alert-primary">Please Verify Email First to comment</p> <br />
-                                    <br />
-                                    <button class="btn btn-info" (click)="sendCode()">Send Verification
+                                    <p style="color:red;">Please Verify Email First to comment</p>
+
+                                    <button [disabled]="buttonDisabled" class="btn btn-info" (click)="sendCode()">Send
+                                        Verification
                                         Code</button>
-                                    <br /> <br />
+                                    <br />
                                     <span *ngIf="codeSent">
+                                        <br />
                                         <input
                                             [className]="invalidcodemessage!='true' ? 'form-control' : 'form-control is-invalid'"
                                             [(ngModel)]="verificationCode" placeholder="Enter 6 digit code" /><button

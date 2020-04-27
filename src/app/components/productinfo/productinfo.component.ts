@@ -3,17 +3,20 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/service/authentication.service';
 import { HttpClientService } from 'src/app/service/httpclient.service';
 import { CartItemCountService } from 'src/app/service/cart-item-count.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-productinfo',
   templateUrl: './productinfo.component.html',
   styleUrls: ['./productinfo.component.css']
 })
 export class ProductinfoComponent implements OnInit {
-  addedtocart = false
   hideme = false
   @Input('product') product: any
-  constructor(private cartItemService: CartItemCountService, private authService: AuthenticationService, private router: Router, private httpClientService: HttpClientService) { }
+  constructor(private toastr: ToastrService, private cartItemService: CartItemCountService, private authService: AuthenticationService, private router: Router, private httpClientService: HttpClientService) { }
   ngOnInit() {
+  }
+  showSuccess() {
+    this.toastr.success('Item Added To Cart');
   }
   public addToCart(id, imageUrl, name, unitPrice, quantity) {
     if (!this.authService.isUserLoggedIn()) {
@@ -22,11 +25,10 @@ export class ProductinfoComponent implements OnInit {
     }
     this.httpClientService.addToCart(id, imageUrl, name, unitPrice, quantity).subscribe(
       () => {
-        this.addedtocart = true;
+
         this.cartItemService.emitValue(1);
-        setTimeout(() => {
-          this.addedtocart = false;
-        }, 800);
+
+        this.showSuccess();
       }, exception => {
         if (exception.status != 200) {
           this.router.navigate(['/login']);
