@@ -16,7 +16,7 @@ export class ProductinfoComponent implements OnInit {
   ngOnInit() {
   }
   showSuccess() {
-    this.toastr.success('Item Added To Cart');
+    this.toastr.success('<span>Item Added To Cart</span>', "", { enableHtml: true, timeOut: 2000, closeButton: true, positionClass: "toast-top-right" });
   }
   public addToCart(id, imageUrl, name, unitPrice, quantity) {
     if (!this.authService.isUserLoggedIn()) {
