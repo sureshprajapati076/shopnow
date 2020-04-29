@@ -10,7 +10,7 @@ import { Router, NavigationStart } from '@angular/router';
 export class CacheForProductListService {
 
 
-
+  allLoaded: boolean
 
 
   map: Map<String, Observable<any>>;
@@ -18,6 +18,8 @@ export class CacheForProductListService {
   cpy: Array<number> = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
   currentPage: number
   constructor(private apiService: ApiService) {
+    this.allLoaded = true;
+
     this.currentPage = 1
     this.map = new Map<String, Observable<any>>();
 

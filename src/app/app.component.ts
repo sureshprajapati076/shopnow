@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { CacheForProductListService } from './service/cache-for-product-list.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+
+  constructor(private cdref: ChangeDetectorRef, public service: CacheForProductListService) { }
+
+  ngAfterContentChecked() {
+
+    this.cdref.detectChanges();
+
+  }
+
+
 
 }
