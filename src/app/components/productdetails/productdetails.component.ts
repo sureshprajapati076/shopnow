@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { HttpClientService } from '../../service/httpclient.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/service/authentication.service';
+import { CacheForProductListService } from 'src/app/service/cache-for-product-list.service';
 @Component({
   selector: 'app-productdetails',
   templateUrl: './productdetails.component.html',
@@ -19,7 +20,7 @@ export class ProductdetailsComponent implements OnInit {
   productId: any;
   product: any;
   addComment: FormGroup;
-  constructor(private authService: AuthenticationService,
+  constructor(private cacheService: CacheForProductListService, private authService: AuthenticationService,
     private router: Router, private cdr: ChangeDetectorRef, private activatedRoute: ActivatedRoute, private httpClientService: HttpClientService, private fb: FormBuilder) {
     this.addComment = this.fb.group({
       "productId": [''],
@@ -32,6 +33,8 @@ export class ProductdetailsComponent implements OnInit {
   isVerified;
 
   ngOnInit() {
+
+    this.cacheService.allLoaded = false;
 
 
     if (this.authService.isUserLoggedIn()) {
@@ -54,6 +57,7 @@ export class ProductdetailsComponent implements OnInit {
     this.httpClientService.getItemById(this.productId).subscribe(
       data => {
         this.product = data.body
+        this.cacheService.allLoaded = true;
       },
       exp => {
         this.router.navigate(['/error-page']);
@@ -67,6 +71,7 @@ export class ProductdetailsComponent implements OnInit {
 
 
       this.loading = false
+
     }, exception => {
     }
     );
