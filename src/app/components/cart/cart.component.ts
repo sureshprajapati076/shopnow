@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { CartItemCountService } from 'src/app/service/cart-item-count.service';
-import { CacheForProductListService } from 'src/app/service/cache-for-product-list.service';
 declare var paypal;
 @Component({
   selector: 'app-cart',
@@ -26,13 +25,12 @@ export class CartComponent implements OnInit {
 
 
 
-  constructor(private _ngZone: NgZone, private cacheService: CacheForProductListService, private cartItemService: CartItemCountService, private router: Router, private httpClientService: HttpClientService) { }
+  constructor(private _ngZone: NgZone, private cartItemService: CartItemCountService, private router: Router, private httpClientService: HttpClientService) { }
   visibleRowIndex = [];
   cart;
   totalCost;
   subject: Subject<any> = new Subject();
   ngOnInit() {
-    this.cacheService.allLoaded = false;
     this.showSpinner = false;
 
     paypal
@@ -112,7 +110,6 @@ export class CartComponent implements OnInit {
               this.totalCost = this.totalCost + product.unitPrice * product.quantity;
             }
           }
-          this.cacheService.allLoaded = true;
         }
       }, exp => {
         this.router.navigate(['/login']);

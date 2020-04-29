@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { HttpClientService } from 'src/app/service/httpclient.service';
 import { PhoneValidator } from './validator';
 @Component({
@@ -19,8 +18,7 @@ export class AddproductComponent implements OnInit {
      */
   newProduct: FormGroup;
   newVendor: FormGroup
-  constructor(private router: Router,
-    private httpClientService: HttpClientService, private fb: FormBuilder) {
+  constructor(private httpClientService: HttpClientService, private fb: FormBuilder) {
     this.newProduct = this.fb.group({
       "name": ['', Validators.required],
       "description": ['', Validators.required],

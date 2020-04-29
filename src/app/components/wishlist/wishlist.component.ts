@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClientService } from '../../service/httpclient.service';
 import { CartItemCountService } from 'src/app/service/cart-item-count.service';
-import { CacheForProductListService } from 'src/app/service/cache-for-product-list.service';
 
 @Component({
   selector: 'app-wishlist',
@@ -10,14 +9,13 @@ import { CacheForProductListService } from 'src/app/service/cache-for-product-li
   styleUrls: ['./wishlist.component.css']
 })
 export class WishlistComponent implements OnInit {
-  constructor(private cacheService: CacheForProductListService, private cartItemService: CartItemCountService, private router: Router, private httpClientService: HttpClientService) { }
+  constructor(private cartItemService: CartItemCountService, private router: Router, private httpClientService: HttpClientService) { }
 
   cart;
   totalCost;
   visibleRowIndex = [];
 
   ngOnInit() {
-    this.cacheService.allLoaded = false;
     this.cart = null;
     this.totalCost = 0;
     this.httpClientService.showCart().subscribe(
@@ -31,7 +29,6 @@ export class WishlistComponent implements OnInit {
               this.totalCost = this.totalCost + product.unitPrice * product.quantity;
             }
           }
-          this.cacheService.allLoaded = true;
         }
 
       }, exp => {

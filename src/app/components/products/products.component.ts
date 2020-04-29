@@ -31,7 +31,7 @@ export class ProductsComponent implements OnInit {
   randomize: Array<number>
   ngOnInit() {
 
-    this.cachedService.allLoaded = false;
+
 
 
 
@@ -65,7 +65,7 @@ export class ProductsComponent implements OnInit {
         }
         this.list = arr
         this.last = data.body.last
-        this.cachedService.allLoaded = true;
+
       }, exception => {
         if (exception.status != 200) {
           this.router.navigate(['/error-page']);
