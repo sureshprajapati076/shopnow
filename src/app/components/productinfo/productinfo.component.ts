@@ -17,8 +17,16 @@ export class ProductinfoComponent implements OnInit {
   ngOnInit() {
   }
   showDetails() {
-    sessionStorage.setItem('product', JSON.stringify(this.product));
-    this.router.navigate(['/productdetails']);
+    this.httpClientService.getItemById(this.product.id).subscribe(
+      data => {
+        sessionStorage.setItem('product', JSON.stringify(data.body));
+        this.router.navigate(['/productdetails']);
+      },
+      exp => {
+        this.router.navigate(['/error-page']);
+      })
+
+
   }
   showSuccess() {
     this.toastr.success('<span>Item Added To Cart</span>', "", { enableHtml: true, timeOut: 2000, closeButton: true, positionClass: "toast-top-right" });
