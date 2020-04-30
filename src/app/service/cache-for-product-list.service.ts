@@ -7,6 +7,7 @@ import { ApiService } from './api.service';
   providedIn: 'root'
 })
 export class CacheForProductListService {
+  product: any;
   map: Map<String, Observable<any>>;
   randomize: Array<number> = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
   cpy: Array<number> = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];

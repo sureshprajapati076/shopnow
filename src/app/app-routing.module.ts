@@ -28,7 +28,8 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent, canActivate: [AuthGaurdService] },
   { path: 'wishlist', component: WishlistComponent, canActivate: [AuthGaurdService] },
   { path: 'order-history', component: MyorderhistoryComponent, canActivate: [AuthGaurdService] },
-  { path: 'productdetails/:productId', component: ProductdetailsComponent },
+  //{ path: 'productdetails/:productId', component: ProductdetailsComponent },
+  { path: 'productdetails', component: ProductdetailsComponent },
   { path: 'order-placed', component: OrderplaceComponent },
   {
     path: 'addproduct', component: AddproductComponent, canActivate: [AuthGaurdService, AddproductGuardService]

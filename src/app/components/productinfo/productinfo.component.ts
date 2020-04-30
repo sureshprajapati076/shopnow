@@ -4,6 +4,7 @@ import { AuthenticationService } from 'src/app/service/authentication.service';
 import { HttpClientService } from 'src/app/service/httpclient.service';
 import { CartItemCountService } from 'src/app/service/cart-item-count.service';
 import { ToastrService } from 'ngx-toastr';
+import { CacheForProductListService } from 'src/app/service/cache-for-product-list.service';
 @Component({
   selector: 'app-productinfo',
   templateUrl: './productinfo.component.html',
@@ -12,8 +13,12 @@ import { ToastrService } from 'ngx-toastr';
 export class ProductinfoComponent implements OnInit {
   hideme = false
   @Input('product') product: any
-  constructor(private toastr: ToastrService, private cartItemService: CartItemCountService, private authService: AuthenticationService, private router: Router, private httpClientService: HttpClientService) { }
+  constructor(private cacheService: CacheForProductListService, private toastr: ToastrService, private cartItemService: CartItemCountService, private authService: AuthenticationService, private router: Router, private httpClientService: HttpClientService) { }
   ngOnInit() {
+  }
+  showDetails() {
+    sessionStorage.setItem('product', JSON.stringify(this.product));
+    this.router.navigate(['/productdetails']);
   }
   showSuccess() {
     this.toastr.success('<span>Item Added To Cart</span>', "", { enableHtml: true, timeOut: 2000, closeButton: true, positionClass: "toast-top-right" });

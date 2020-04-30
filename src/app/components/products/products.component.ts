@@ -65,6 +65,7 @@ export class ProductsComponent implements OnInit {
         }
         this.list = arr
         this.last = data.body.last
+        // console.log(this.list)
 
       }, exception => {
         if (exception.status != 200) {
