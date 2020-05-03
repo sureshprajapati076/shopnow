@@ -31,6 +31,18 @@ export class MyorderhistoryComponent implements OnInit {
       }
     );
   }
+  showDetails(id) {
+    this.httpClientService.getItemById(id).subscribe(
+      data => {
+        sessionStorage.setItem('product', JSON.stringify(data.body));
+        this.router.navigate(['/productdetails']);
+      },
+      exp => {
+        this.router.navigate(['/error-page']);
+      })
+
+
+  }
 
 
 }
