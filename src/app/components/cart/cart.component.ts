@@ -98,6 +98,19 @@ export class CartComponent implements OnInit {
     this.subject.next({ "id": i, "quantity": this.itemcounttoadd });
   }
 
+  showDetails(id) {
+    this.httpClientService.getItemById(id).subscribe(
+      data => {
+        sessionStorage.setItem('product', JSON.stringify(data.body));
+        this.router.navigate(['/productdetails']);
+      },
+      exp => {
+        this.router.navigate(['/error-page']);
+      })
+
+
+  }
+
   public loadCart() {
     this.cart = null;
     this.totalCost = 0;

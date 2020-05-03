@@ -36,7 +36,18 @@ export class WishlistComponent implements OnInit {
       }
     );
   }
+  showDetails(id) {
+    this.httpClientService.getItemById(id).subscribe(
+      data => {
+        sessionStorage.setItem('product', JSON.stringify(data.body));
+        this.router.navigate(['/productdetails']);
+      },
+      exp => {
+        this.router.navigate(['/error-page']);
+      })
 
+
+  }
   public putBack2Cart(i, id, cost, total) {
     this.totalCost = this.totalCost - cost * total;
     this.httpClientService.putBack2Cart(id).subscribe(

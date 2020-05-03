@@ -12,12 +12,11 @@
             <th>Sub-Total</th>
             <tr [hidden]="visibleRowIndex[i] == true" *ngFor="let item of cart.productsInCart; let i=index">
 
-                <td><a style="text-decoration: none; color:black" [routerLink]="['/productdetails',item.productId]"><img
-                            height="45" width="45"
+                <td><span style="cursor: pointer;" (click)="showDetails(item.productId)"><img height="45" width="45"
                             src="{{(item.imageUrl!='default.png')? item.imageUrl:'./assets/images/noimage.png'}}">
 
                         {{item.name}}
-                    </a> </td>
+                    </span> </td>
                 <td>{{item.unitPrice}}</td>
                 <td>
 
