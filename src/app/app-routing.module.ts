@@ -34,9 +34,10 @@ const routes: Routes = [
   {
     path: 'addproduct', component: AddproductComponent, canActivate: [AuthGaurdService, AddproductGuardService]
   },
-  {
-    path: 'user-profile', component: UserprofileComponent, canActivate: [AuthGaurdService]
-  }];
+  // {
+  //   path: 'user-profile', component: UserprofileComponent, canActivate: [AuthGaurdService]
+  // }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { useHash: true })],

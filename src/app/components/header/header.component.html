@@ -41,7 +41,7 @@
             <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">Welcome {{loginService.getUserName()}}</a>
             <div class="dropdown-menu" aria-labelledby="dropdown04">
-                <a class="dropdown-item" [routerLink]="['/user-profile']">View Profile</a>
+                <a style="cursor: pointer;" class="dropdown-item" (click)="openDialog()">View Profile</a>
                 <a class="dropdown-item" [routerLink]="['/wishlist']">WishList</a>
                 <a class="dropdown-item" [routerLink]="['/order-history']">View Order History</a>
                 <a *ngIf="loginService.isUserLoggedIn()" (click)="logOut()" class="dropdown-item" href="#">Logout

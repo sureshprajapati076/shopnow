@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClientService } from '../../service/httpclient.service';
-import { AuthenticationService } from '../../service/authentication.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MatDialogRef } from '@angular/material';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-userprofile',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class UserprofileComponent implements OnInit {
   updateAcc: FormGroup;
-  constructor(private authService: AuthenticationService, private router: Router,
+  constructor(public toastr: ToastrService, public dialogRef: MatDialogRef<UserprofileComponent>, private router: Router,
     private httpClientService: HttpClientService, private fb: FormBuilder) {
     this.updateAcc = this.fb.group({
       "email": [{ value: '', disabled: true }],
@@ -20,6 +21,7 @@ export class UserprofileComponent implements OnInit {
     });
     // this.updateAcc.controls['email'].disable();
   }
+
 
   currentUser;
   ngOnInit() {
@@ -45,13 +47,15 @@ export class UserprofileComponent implements OnInit {
 
     this.httpClientService.updateUserProfile(this.updateAcc.value)
       .subscribe(data => {
-        if (data === null) {
-          this.router.navigate(['signup'])
-          return false;
-        }
-        this.router.navigate(['products']);
-        return true;
+        this.toastr.success('<span>Successfully Updated Profile</span>', "", { enableHtml: true, timeOut: 2000, closeButton: true, positionClass: "toast-top-right" });
+
       })
+
+    this.dialogRef.close();
   }
+  closeDialog() {
+    this.dialogRef.close();
+  }
+
 
 }

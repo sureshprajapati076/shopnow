@@ -29,12 +29,20 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {
+  MatTableModule,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatButtonModule
+} from '@angular/material';
+import {
   SocialLoginModule,
   AuthServiceConfig,
   GoogleLoginProvider
 
 } from 'angular-6-social-login';
 import { OrderplaceComponent } from './components/orderplace/orderplace.component';
+
 
 export function getAuthServiceConfigs() {
   const config = new AuthServiceConfig(
@@ -71,18 +79,29 @@ export function getAuthServiceConfigs() {
     SearchComponent,
     OrderplaceComponent,
 
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    MatTableModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule,
     ReactiveFormsModule,
     NgxPaginationModule, SocialLoginModule, BrowserAnimationsModule,
     ToastrModule.forRoot()
 
 
   ],
+  entryComponents: [
+
+    UserprofileComponent
+  ],
+
   providers: [{
     provide: AuthServiceConfig,
     useFactory: getAuthServiceConfigs

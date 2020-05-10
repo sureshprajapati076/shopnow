@@ -1,65 +1,43 @@
-<div class="row">
-    <div class="col-md-8 offset-md-4">
-        <form [formGroup]="updateAcc" (ngSubmit)="updateAccount()">
-            <fieldset>
-                <legend>Update Your Details</legend>
-                <div class="container" style="margin-top: 1em;">
-                    <div class="row">
-                        <div class="col-md-6">
+<h1 mat-dialog-title>Update Profile</h1>
 
+<form [formGroup]="updateAcc">
 
-                            <div class="form-group">
-                                <label for="productNumber">Email</label>
+    <mat-form-field class="mat-input-wrapper">
+        <label for="email">Email</label>
+        <input [value]="currentUser?.email" formControlName="email" matInput>
+    </mat-form-field>
+    <mat-error>
+        <span *ngIf="!updateAcc.get('email').valid && updateAcc.get('email').touched">Please
+            enter email!!!</span>
+    </mat-error>
 
-                                <input [value]="currentUser?.email" id="email" name="email" type="text"
-                                    class="form-control" formControlName="email" required>
-                            </div>
+    <mat-form-field class="mat-input-wrapper">
+        <label for="name">Name</label>
+        <input [value]="currentUser?.name" formControlName="name" matInput>
+    </mat-form-field>
+    <mat-error>
+        <span *ngIf="!updateAcc.get('name').valid && updateAcc.get('name').touched">Please
+            enter Name!!!</span>
+    </mat-error>
 
-                            <div class="form-group">
-                                <label for="unitPrice">Name</label>
-
-
-                                <input [value]="currentUser?.name" id="name" name="name" type="text"
-                                    class="form-control" formControlName="name" required="required">
-                            </div>
-
-
-
-
-                            <div class="form-group">
-                                <label for="address">Address</label>
-
-                                <input [value]="currentUser?.address" id="address" name="address" type="text"
-                                    class="form-control" formControlName="address" required="required">
-                                <span
-                                    *ngIf="!updateAcc.get('address').valid && updateAcc.get('address').value !='' ">error</span>
-                            </div>
+    <mat-form-field class="mat-input-wrapper">
+        <label for="address">Address</label>
+        <input [value]="currentUser?.address" formControlName="address" matInput>
+    </mat-form-field>
+    <mat-error>
+        <span *ngIf="!updateAcc.get('address').valid && updateAcc.get('address').touched">Please
+            enter address!!!</span>
+    </mat-error>
 
 
 
 
+</form>
 
 
 
-
-
-
-
-
-
-
-                            <div style="float:right;">
-
-                                <a [routerLink]="['/products']" class="btn btn-outline-warning"
-                                    style="margin-right: 2em;">Cancel</a>
-                                <button id="btnSubmit" [disabled]="!updateAcc.valid" type="submit"
-                                    class="btn btn-outline-primary">Update</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </fieldset>
-        </form>
-    </div>
+<div mat-dialog-actions class="pull-right">
+    <button mat-button (click)="updateAccount()" mat-flat-button color="primary"
+        [disabled]="!updateAcc.valid">Update</button>
+    <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
 </div>

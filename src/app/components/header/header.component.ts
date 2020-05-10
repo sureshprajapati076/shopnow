@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../service/authentication.service';
 import { Router } from '@angular/router';
 import { HttpClientService } from '../../service/httpclient.service';
-import { HttpClient } from '@angular/common/http';
+import { MatDialog } from '@angular/material';
 import { CartItemCountService } from 'src/app/service/cart-item-count.service';
+import { UserprofileComponent } from '../userprofile/userprofile.component';
 
 @Component({
   selector: 'app-header',
@@ -19,7 +20,28 @@ export class HeaderComponent implements OnInit {
 
   profile_image;
 
-  constructor(private authService: AuthenticationService, private httpClientService: HttpClientService, private cartItemCounterService: CartItemCountService, public router: Router, public loginService: AuthenticationService, private httpClient: HttpClientService) { }
+  constructor(public dialog: MatDialog, private authService: AuthenticationService, private httpClientService: HttpClientService, private cartItemCounterService: CartItemCountService, public router: Router, public loginService: AuthenticationService, private httpClient: HttpClientService) { }
+
+  openDialog() {
+
+    if (!this.authService.isUserLoggedIn()) {
+      this.router.navigate(['login']);
+      return;
+    }
+
+
+    const dialogRef = this.dialog.open(UserprofileComponent, {
+      width: '400px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+
+    });
+  }
+
+
+
   ngOnInit() {
     this.profile_image = localStorage.getItem('image')
     this.cartItemCounterService.emitter.subscribe(data => this.cartItemCount = data);
