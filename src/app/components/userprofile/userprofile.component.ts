@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { HttpClientService } from '../../service/httpclient.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -16,8 +16,8 @@ export class UserprofileComponent implements OnInit {
     private httpClientService: HttpClientService, private fb: FormBuilder) {
     this.updateAcc = this.fb.group({
       "email": [{ value: '', disabled: true }],
-      "name": ['', Validators.minLength(4)],
-      "address": ['', [Validators.minLength(4)]]
+      "name": ['', [Validators.required, Validators.minLength(4)]],
+      "address": ['', [Validators.required, Validators.minLength(4)]]
     });
     // this.updateAcc.controls['email'].disable();
   }
@@ -54,6 +54,9 @@ export class UserprofileComponent implements OnInit {
     this.dialogRef.close();
   }
   closeDialog() {
+    this.dialogRef.close();
+  }
+  @HostListener('window:keyup.esc') onKeyUp() {
     this.dialogRef.close();
   }
 

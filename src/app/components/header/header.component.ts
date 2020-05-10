@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { AuthenticationService } from '../../service/authentication.service';
 import { Router } from '@angular/router';
 import { HttpClientService } from '../../service/httpclient.service';
@@ -31,7 +31,11 @@ export class HeaderComponent implements OnInit {
 
 
     const dialogRef = this.dialog.open(UserprofileComponent, {
-      width: '400px'
+      width: '400px',
+      disableClose: true,
+      autoFocus: true
+      //  hasBackdrop: true
+
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -39,6 +43,7 @@ export class HeaderComponent implements OnInit {
 
     });
   }
+
 
 
 

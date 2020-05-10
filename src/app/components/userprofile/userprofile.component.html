@@ -1,3 +1,4 @@
+<button mat-button (click)="closeDialog()" color="warn" class="pull-right" tabIndex=-1>X</button>
 <h1 mat-dialog-title>Update Profile</h1>
 
 <form [formGroup]="updateAcc">
@@ -13,11 +14,11 @@
 
     <mat-form-field class="mat-input-wrapper">
         <label for="name">Name</label>
-        <input [value]="currentUser?.name" formControlName="name" matInput>
+        <input [value]="currentUser?.name" formControlName="name" matInput md-autofocus>
     </mat-form-field>
     <mat-error>
         <span *ngIf="!updateAcc.get('name').valid && updateAcc.get('name').touched">Please
-            enter Name!!!</span>
+            enter Full Name Min 4 Characters!!!</span>
     </mat-error>
 
     <mat-form-field class="mat-input-wrapper">
@@ -26,7 +27,7 @@
     </mat-form-field>
     <mat-error>
         <span *ngIf="!updateAcc.get('address').valid && updateAcc.get('address').touched">Please
-            enter address!!!</span>
+            enter address Min 4 Characters!!!</span>
     </mat-error>
 
 
