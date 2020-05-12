@@ -35,6 +35,7 @@ import {
   MatInputModule,
   MatButtonModule
 } from '@angular/material';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import {
   SocialLoginModule,
   AuthServiceConfig,
@@ -91,6 +92,7 @@ export function getAuthServiceConfigs() {
     MatFormFieldModule,
     MatButtonModule,
     MatInputModule,
+    DragDropModule,
     ReactiveFormsModule,
     NgxPaginationModule, SocialLoginModule, BrowserAnimationsModule,
     ToastrModule.forRoot()

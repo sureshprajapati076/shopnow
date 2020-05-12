@@ -1,5 +1,6 @@
 <button mat-button (click)="closeDialog()" color="warn" class="pull-right" tabIndex=-1>X</button>
-<h1 mat-dialog-title>Update Profile</h1>
+<h1 style="cursor: all-scroll;" mat-dialog-title cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>Update
+    Profile</h1>
 
 <form [formGroup]="updateAcc">
 
