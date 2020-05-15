@@ -94,7 +94,8 @@
                                                 *ngIf="comment.comment.length > 20 && comment.shrink!=1">See
                                                 more</span>
                                             <br />
-                                            <span [hidden]="hideme[i]" (click)="hideme[i] = !hideme[i]"
+                                            <span *ngIf="isVerified=='YES'" [hidden]=" hideme[i]"
+                                                (click)="hideme[i] = !hideme[i]"
                                                 style="position:relative;left:30px;color: grey; cursor: pointer;">
                                                 Reply</span>
                                             <br />
