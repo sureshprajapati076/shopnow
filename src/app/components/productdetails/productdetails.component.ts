@@ -128,8 +128,6 @@ export class ProductdetailsComponent implements OnInit {
     }
   }
   public submitReply(id, i) {
-
-
     if (this.reply[i] !== '' && this.reply[i] != undefined) {
       this.httpClientService.addReply(this.reply[i], id).subscribe(data => {
         this.hideme[i] = !this.hideme[i];

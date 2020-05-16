@@ -82,69 +82,85 @@
                             <hr>
                             <ul class="media-list">
                                 <li class="media" *ngFor="let comment of comments; let i = index">
-                                    <a href="#" class="pull-left">
-                                        <img src="https://bootdey.com/img/Content/user_1.jpg" alt=""
-                                            class="rounded-circle">
-                                    </a>
-                                    <div class="media-body">
-                                        <span class="text-muted pull-right">
-                                            <small class="text-muted">{{comment.commentDate|date:'medium':'-1000'}}
-                                                ({{comment.commentDate |dateAgo}})</small>
-                                        </span>
-                                        <strong class="text-success">{{comment.emailId}} &nbsp;&nbsp;&nbsp;
-                                            <i *ngFor="let ist of comment.stars | fill" class="fa fa-star"></i>
-                                            {{comment.stars}}</strong>
-                                        <p>
-                                            <span *ngIf="comment.shrink!=1">
-                                                {{comment.comment |truncate:20}}
-                                            </span>
-                                            <span *ngIf="comment.shrink==1">
-                                                {{comment.comment}}
-                                            </span>
-                                            <span style="cursor: pointer;color:blue;" (click)="comment.shrink=1"
-                                                *ngIf="comment.comment.length > 20 && comment.shrink!=1">See
-                                                more</span>
-                                            <br />
-                                            <span *ngIf="isVerified=='YES'" [hidden]=" hideme[i]"
-                                                (click)="hideme[i] = !hideme[i]"
-                                                style="position:relative;left:30px;color: grey; cursor: pointer;">
-                                                Reply</span>
-                                            <br />
-                                            <span [hidden]="!hideme[i]">
-                                                <form (ngSubmit)="submitReply(comment.id,i)">
-                                                    <input [(ngModel)]="reply[i]" name="comment" type="text"
-                                                        class="form-control" required>
-                                                    <button type="reset" class="btn btn-outline-info"
-                                                        style="margin-right: 2em;">Reset</button>
-                                                    <span class="btn btn-outline-warning" style="margin-right: 2em;"
-                                                        (click)="hideme[i] =!hideme[i]">Cancel</span>
+                                    <div class="row">
+                                        <div class="col-1">
+                                            <img src="https://bootdey.com/img/Content/user_1.jpg" alt=""
+                                                class="rounded-circle">
+                                        </div>
+                                        <div class="col-11 text-justify">
 
-                                                    <button type="submit" class="btn btn-outline-primary">Reply</button>
-                                                </form>
+                                            <strong class="text-success">{{comment.emailId}} &nbsp;&nbsp;&nbsp;
+                                                <i *ngFor="let ist of comment.stars | fill" class="fa fa-star"></i>
+                                                {{comment.stars}}</strong>
+                                            <span class="text-muted pull-right">
+                                                <small class="text-muted">{{comment.commentDate|date:'medium':'-1000'}}
+                                                    ({{comment.commentDate |dateAgo}})</small>
                                             </span>
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <ul class="media-list">
-                                            <li class="media" *ngFor="let reply of comment.replies">
-                                                <a href="#" class="pull-left">
-                                                    <img src="https://bootdey.com/img/Content/user_1.jpg" alt=""
-                                                        class="rounded-circle">
-                                                </a>
-                                                <div class="media-body">
-                                                    <span class="text-muted pull-right">
-                                                        <small
-                                                            class="text-muted">{{reply.replyDate|date:'medium':'UTC-10'}}
-                                                            ({{reply.replyDate |dateAgo}})</small>
-                                                    </span>
-                                                    <strong class="text-success">{{reply.email}}</strong>
-                                                    <p>
-                                                        {{reply.comment}}
-                                                    </p>
+                                            <div>
+                                                <div *ngIf="comment.shrink!=1">
+                                                    {{comment.comment |truncate:20}}
                                                 </div>
-                                            </li>
-                                        </ul>
+                                                <div *ngIf="comment.shrink==1">
+                                                    {{comment.comment}}
+                                                </div>
+                                                <div style="cursor: pointer;color:blue;" (click)="comment.shrink=1"
+                                                    *ngIf="comment.comment.length > 20 && comment.shrink!=1">See
+                                                    more</div>
+
+                                                <span *ngIf="isVerified=='YES'" [hidden]=" hideme[i]"
+                                                    (click)="hideme[i] = !hideme[i]"
+                                                    style="position:relative;left:0px;color: grey; cursor: pointer;">
+                                                    Reply</span>
+
+                                                <span [hidden]="!hideme[i]">
+                                                    <form (ngSubmit)="submitReply(comment.id,i)">
+                                                        <input [(ngModel)]="reply[i]" name="comment" type="text"
+                                                            class="form-control" required>
+                                                        <button type="reset" class="btn btn-outline-info"
+                                                            style="margin-right: 2em;">Reset</button>
+                                                        <span class="btn btn-outline-warning" style="margin-right: 2em;"
+                                                            (click)="hideme[i] =!hideme[i]">Cancel</span>
+
+                                                        <button type="submit"
+                                                            class="btn btn-outline-primary">Reply</button>
+                                                    </form>
+                                                </span>
+                                            </div>
+                                            <br />
+
+                                        </div>
+
                                     </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <ul class="media-list">
+                                                <li class="media" *ngFor="let reply of comment.replies">
+                                                    <div class="row">
+                                                        <div class="col-1">
+                                                            <span class="pull-left">
+                                                                <img src="https://bootdey.com/img/Content/user_1.jpg"
+                                                                    alt="" class="rounded-circle">
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-11">
+                                                            <div class="media-body">
+                                                                <span class="text-muted pull-right">
+                                                                    <small
+                                                                        class="text-muted">{{reply.replyDate|date:'medium':'UTC-10'}}
+                                                                        ({{reply.replyDate |dateAgo}})</small>
+                                                                </span>
+                                                                <strong class="text-success">{{reply.email}}</strong>
+                                                                <p>
+                                                                    {{reply.comment}}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
                                 </li>
                             </ul>
                         </div>
