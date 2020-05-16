@@ -20,6 +20,7 @@ export class ProductdetailsComponent implements OnInit {
   productId: any;
   product: any;
   addComment: FormGroup;
+  replyToComment: Array<FormGroup> = []
   constructor(private cacheService: CacheForProductListService,
     private authService: AuthenticationService,
     private router: Router, private cdr: ChangeDetectorRef, private activatedRoute: ActivatedRoute, private httpClientService: HttpClientService, private fb: FormBuilder) {
@@ -29,7 +30,7 @@ export class ProductdetailsComponent implements OnInit {
       "stars": ['',]
     });
   }
-  comments
+  comments = []
   loading = true
   isVerified;
 
@@ -65,6 +66,14 @@ export class ProductdetailsComponent implements OnInit {
       this.comments = data.body
       this.comments.reverse();
 
+      for (let i = 0; i < this.comments.length; i++) {
+        this.replyToComment[i] = this.fb.group({
+
+          "reply": ['', Validators.required],
+
+        });
+
+      }
 
 
       this.loading = false
@@ -128,13 +137,13 @@ export class ProductdetailsComponent implements OnInit {
     }
   }
   public submitReply(id, i) {
-    if (this.reply[i] !== '' && this.reply[i] != undefined) {
-      this.httpClientService.addReply(this.reply[i], id).subscribe(data => {
-        this.hideme[i] = !this.hideme[i];
-        this.reply[i] = "";
-        this.ngOnInit();
-      });
-    }
+
+    this.httpClientService.addReply(this.replyToComment[i].get('reply').value, id).subscribe(data => {
+      this.hideme[i] = !this.hideme[i];
+
+      this.ngOnInit();
+    });
+
 
 
 

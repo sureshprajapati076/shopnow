@@ -113,16 +113,23 @@
                                                     Reply</span>
 
                                                 <span [hidden]="!hideme[i]">
-                                                    <form (ngSubmit)="submitReply(comment.id,i)">
-                                                        <input [(ngModel)]="reply[i]" name="comment" type="text"
-                                                            class="form-control" required>
-                                                        <button type="reset" class="btn btn-outline-info"
-                                                            style="margin-right: 2em;">Reset</button>
-                                                        <span class="btn btn-outline-warning" style="margin-right: 2em;"
-                                                            (click)="hideme[i] =!hideme[i]">Cancel</span>
+                                                    <form [formGroup]="replyToComment[i]"
+                                                        (ngSubmit)="submitReply(comment.id,i)">
 
-                                                        <button type="submit"
-                                                            class="btn btn-outline-primary">Reply</button>
+
+                                                        <mat-form-field style="width: 100%;" class="mat-input-wrapper">
+                                                            <mat-label>Reply</mat-label>
+                                                            <textarea formControlName="reply" matInput></textarea>
+                                                        </mat-form-field>
+                                                        <button type="submit" [disabled]="!replyToComment[i].valid"
+                                                            class="btn btn-light pull-right ">REPLY</button>
+                                                        <button type="button" (click)="hideme[i] =!hideme[i]"
+                                                            class="btn btn-light pull-right">CANCEL</button>
+
+
+
+
+
                                                     </form>
                                                 </span>
                                             </div>
