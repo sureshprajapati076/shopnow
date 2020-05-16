@@ -4,15 +4,26 @@
             <div class="comment-wrapper">
                 <div class="card">
                     <div class="card-header h5">
-                        <app-productinfo [product]="product"></app-productinfo>
-                        {{product.description}}<br /><br />
-                        <p class="text-center">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-4">
+                                <app-productinfo [product]="product"></app-productinfo>
+                                <p class="text-center">
 
-                            Vendor Details:<br />
-                            {{product.vendor.name}}<br />
-                            {{product.vendor.address}}<br />
-                            {{product.vendor.phone}}
-                        </p>
+                                    Vendor Details:<br />
+                                    {{product.vendor.name}}<br />
+                                    {{product.vendor.address}}<br />
+                                    {{product.vendor.phone}}
+                                </p>
+                            </div>
+                            <div class="col-sm-12 col-md-8 text-justify">
+                                About Product:
+                                <div [innerHTML]="product.description"></div>
+
+                            </div>
+
+                        </div>
+
+
                     </div>
                     <div *ngIf="loading else loaded" class="text-center">
                         <div>Loading Comments...</div>
@@ -31,7 +42,7 @@
                             <form *ngIf="isVerified=='YES' else asktoverify" [formGroup]="addComment">
                                 <textarea name="comment" type="text" class="form-control" rows="3"
                                     formControlName="comment" required
-                                    placeholder="write a comment... And Click Stars to submit"></textarea>
+                                    placeholder="Write a comment... and Click Stars to submit"></textarea>
                                 <span *ngIf="!addComment.get('comment').valid" style="color:red">Required Some
                                     Comments Before Rating</span>
                                 <hr />

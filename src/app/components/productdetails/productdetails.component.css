@@ -4,11 +4,12 @@
   direction: rtl;
   font-size: 3em; 
   color: Tomato;
+  cursor: pointer;
 }
 .rating > span {
   display: inline-block;
   position: relative;
-  width: 1.1em;
+  width: 1em;
 }
 .rating > span:hover:before,
 .rating > span:hover ~ span:before {

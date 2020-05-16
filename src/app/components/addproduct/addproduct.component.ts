@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClientService } from 'src/app/service/httpclient.service';
 import { PhoneValidator } from './validator';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 @Component({
   selector: 'app-addproduct',
   templateUrl: './addproduct.component.html',
   styleUrls: ['./addproduct.component.css']
 })
 export class AddproductComponent implements OnInit {
+  public Editor = ClassicEditor;
   /*   
     "name":"coke bottle",
     "description":"good choco ",

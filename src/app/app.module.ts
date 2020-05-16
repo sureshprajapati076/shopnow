@@ -27,6 +27,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { SearchComponent } from './search/search.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+
 
 import {
   MatTableModule,
@@ -81,6 +83,7 @@ export function getAuthServiceConfigs() {
     OrderplaceComponent,
 
 
+
   ],
   imports: [
     BrowserModule,
@@ -93,6 +96,7 @@ export function getAuthServiceConfigs() {
     MatButtonModule,
     MatInputModule,
     DragDropModule,
+    CKEditorModule,
     ReactiveFormsModule,
     NgxPaginationModule, SocialLoginModule, BrowserAnimationsModule,
     ToastrModule.forRoot()
