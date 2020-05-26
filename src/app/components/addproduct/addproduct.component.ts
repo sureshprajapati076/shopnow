@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClientService } from 'src/app/service/httpclient.service';
 import { PhoneValidator } from './validator';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+declare var cloudinary;
 @Component({
   selector: 'app-addproduct',
   templateUrl: './addproduct.component.html',
@@ -42,6 +43,30 @@ export class AddproductComponent implements OnInit {
     this.selectedVendor = '17626e5c-ae61-490d-bd9f-8878560d3330'
     this.loadVendors();
   }
+
+  showImageUploadDialog(){
+
+    cloudinary.createUploadWidget({
+      cloudName: 'surespraja', 
+      uploadPreset: 'mbfx97xx'}, (error, result) => { 
+        if (!error && result && result.event === "success") { 
+        
+        
+          this.newProduct.patchValue({ imageUrl: 'https://res.cloudinary.com/surespraja/image/upload/'+result.info.public_id+'.png' });
+         
+
+
+
+         
+         
+        }
+      }
+    ).open();
+
+
+  }
+
+
   loadVendors() {
     this.httpClientService.getVendors().subscribe(data => {
       this.vendors = data.body

@@ -38,6 +38,7 @@ export class AuthenticationService {
           localStorage.setItem('username', username)
           let tokenStr = 'Bearer ' + userData.token;
           localStorage.setItem('token', tokenStr);
+          
 
 
           this.httpClient.get(ApplicationConstants.API_PATH.getuserdetails).subscribe(
@@ -51,6 +52,7 @@ export class AuthenticationService {
                 localStorage.setItem('role', 'OTHERS')
               }
               localStorage.setItem('username', this.user.name)
+              localStorage.setItem('image', this.user.picture)
 
             }
           );

@@ -78,8 +78,18 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('username', this.userPostData.name)
       localStorage.setItem('role', 'OTHERS')
       localStorage.setItem('token', 'Bearer ' + data.body.token);
-      localStorage.setItem('image', this.userPostData.provider_pic)
-      this.cartItemService.emitProfilePic(this.userPostData.provider_pic);
+     
+     
+     
+
+      this.httpClientService.getUserDetails().subscribe(
+          res=>{
+            localStorage.setItem('image', res.body.picture)
+            this.cartItemService.emitProfilePic(res.body.picture);
+          }
+
+
+      );
 
       this.httpClientService.showCart().subscribe(
         res => {
@@ -137,6 +147,7 @@ export class LoginComponent implements OnInit {
             }
 
             this.cartItemService.emitValue(count)
+            this.cartItemService.emitProfilePic(localStorage.getItem('image'));
 
 
           }

@@ -1,9 +1,20 @@
 <h1 mat-dialog-title cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>Update
-    Profile
+    Profile 
 
     <button mat-button (click)="closeDialog()" color="warn" class="pull-right" tabIndex=-1>X</button>
 
 </h1>
+
+
+<span *ngIf="currentUser&&currentUser.picture else defaultImage" style="cursor: pointer;">
+
+    <img class="mx-auto d-block" (click)="showImageUploadDialog()" src="{{currentUser.picture}}" />
+
+    </span>
+    <ng-template #defaultImage >
+        <img class="mx-auto d-block" style="cursor: pointer;" (click)="showImageUploadDialog()" src="https://res.cloudinary.com/surespraja/image/upload/w_100,h_100,c_thumb,g_face,r_max/noimage_yu458l.png" />
+    </ng-template>
+
 
 
 <form [formGroup]="updateAcc">
